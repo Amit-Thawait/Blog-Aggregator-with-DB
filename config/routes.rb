@@ -16,7 +16,7 @@ Amit::Application.routes.draw do
    end 
   end
    
-  #root :to => "read_blogs#index"
+  root :to => "read_blogs#index"
   
   
   
