@@ -1,0 +1,884 @@
+
+
+Started GET "/" for 127.0.0.1 at Wed Feb 22 18:19:09 +0530 2012
+
+Mysql::Error (Access denied for user 'root'@'localhost' (using password: NO)):
+  
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (58.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (223.1ms)
+
+
+Started GET "/" for 127.0.0.1 at Wed Feb 22 18:21:34 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[36mBlog Load (12.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` [0m
+Mysql::Error: Table 'blog_aggregator_development.posts' doesn't exist: SHOW FIELDS FROM `posts`
+Rendered read_blogs/index.html.erb within layouts/application (286.1ms)
+Completed 500 Internal Server Error in 2276ms
+
+ActionView::Template::Error (Mysql::Error: Table 'blog_aggregator_development.posts' doesn't exist: SHOW FIELDS FROM `posts`):
+    4: <input type='hidden' id='show_per_page' />  
+    5: <ul style="margin:10px;" id='content'>
+    6: <% if @blogs && !@blogs.empty? %>
+    7: <% @posts.each do |post| %>  
+    8: <% blog = Blog.find(post.blog_id)%>
+    9: <li>
+    10:   <span style="font-size:14px;"><%= blog.blog_title %></span>
+  app/views/read_blogs/index.html.erb:7:in `_app_views_read_blogs_index_html_erb___398005092_53372232'
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (19.0ms)
+  [1m[36m (0.0ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to CreateBlogs (20111229150234)
+Migrating to DeviseCreateAdmins (20120127111227)
+  [1m[35m (320.0ms)[0m  CREATE TABLE `admins` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(128) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (44.0ms)[0m  [1mSHOW KEYS FROM `admins`[0m
+  [1m[35m (315.0ms)[0m  CREATE UNIQUE INDEX `index_admins_on_email` ON `admins` (`email`)
+  [1m[36m (2.0ms)[0m  [1mSHOW KEYS FROM `admins`[0m
+  [1m[35m (156.0ms)[0m  CREATE UNIQUE INDEX `index_admins_on_reset_password_token` ON `admins` (`reset_password_token`)
+  [1m[36m (31.0ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20120127111227')[0m
+Migrating to AddUsernameToAdmins (20120127122331)
+  [1m[35m (339.0ms)[0m  ALTER TABLE `admins` ADD `user_name` varchar(255)
+  [1m[36m (29.0ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20120127122331')[0m
+Migrating to CreatePosts (20120131081248)
+  [1m[35m (69.0ms)[0m  CREATE TABLE `posts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `url` varchar(255), `title` varchar(255), `content` text, `author` varchar(255), `post_date` datetime, `blog_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (21.0ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20120131081248')[0m
+Migrating to AddBloggerTypeAndBlogTitleToBlogs (20120131082436)
+  [1m[35m (210.0ms)[0m  ALTER TABLE `blogs` ADD `blogger_type` varchar(255)
+  [1m[36m (223.0ms)[0m  [1mALTER TABLE `blogs` ADD `blog_title` varchar(255)[0m
+  [1m[35m (20.0ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20120131082436')
+  [1m[36m (0.0ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+  [1m[35m (1.0ms)[0m  SHOW KEYS FROM `admins`
+  [1m[36m (1.0ms)[0m  [1mSHOW KEYS FROM `blogs`[0m
+  [1m[35m (1.0ms)[0m  SHOW KEYS FROM `posts`
+
+
+Started GET "/" for 127.0.0.1 at Wed Feb 22 18:36:31 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+  [1m[36mPost Load (8.0ms)[0m  [1mSELECT `posts`.* FROM `posts` ORDER BY post_date DESC LIMIT 5 OFFSET 0[0m
+  [1m[35m (2.0ms)[0m  SELECT COUNT(*) FROM `posts` 
+Rendered read_blogs/index.html.erb within layouts/application (293.0ms)
+Compiled jquery.js  (6ms)  (pid 4652)
+Compiled rails.js  (1ms)  (pid 4652)
+Compiled script.js  (2ms)  (pid 4652)
+Compiled style.css  (3ms)  (pid 4652)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 825ms (Views: 678.1ms | ActiveRecord: 41.0ms)
+
+
+Started GET "/admins/sign_up" for 127.0.0.1 at Wed Feb 22 18:36:56 +0530 2012
+  Processing by Devise::RegistrationsController#new as HTML
+Rendered devise/shared/_links.erb (1.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/devise-1.5.3/app/views/devise/registrations/new.html.erb within layouts/application (94.0ms)
+Rendered layouts/_navigation_links.html.erb (0.0ms)
+Completed 200 OK in 245ms (Views: 204.0ms | ActiveRecord: 23.0ms)
+
+
+Started POST "/admins" for 127.0.0.1 at Wed Feb 22 18:37:08 +0530 2012
+  Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"commit"=>"Sign up", "admin"=>{"password_confirmation"=>"[FILTERED]", "password"=>"[FILTERED]", "email"=>"amit.thawait@tcs.com"}, "authenticity_token"=>"1M0mpUVz5N4qFbffXspA4jUFnmHZPl+BIj7V8GhpwdQ=", "utf8"=>"✓"}
+  [1m[36mSQL (11.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.0ms)[0m  SELECT 1 FROM `admins` WHERE `admins`.`email` = BINARY 'amit.thawait@tcs.com' LIMIT 1
+  [1m[36mSQL (66.0ms)[0m  [1mINSERT INTO `admins` (`created_at`, `current_sign_in_at`, `current_sign_in_ip`, `email`, `encrypted_password`, `last_sign_in_at`, `last_sign_in_ip`, `remember_created_at`, `reset_password_sent_at`, `reset_password_token`, `sign_in_count`, `updated_at`, `user_name`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 22 Feb 2012 13:07:09 UTC +00:00], ["current_sign_in_at", nil], ["current_sign_in_ip", nil], ["email", "amit.thawait@tcs.com"], ["encrypted_password", "$2a$10$FV71B.JEJETHqxRCiSxMW.63MK1J21EiG9MAYF.6JF7sBmU/myxZm"], ["last_sign_in_at", nil], ["last_sign_in_ip", nil], ["remember_created_at", nil], ["reset_password_sent_at", nil], ["reset_password_token", nil], ["sign_in_count", 0], ["updated_at", Wed, 22 Feb 2012 13:07:09 UTC +00:00], ["user_name", nil]]
+  [1m[35m (38.0ms)[0m  COMMIT
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.0ms)[0m  UPDATE `admins` SET `last_sign_in_at` = '2012-02-22 13:07:09', `current_sign_in_ip` = '127.0.0.1', `current_sign_in_at` = '2012-02-22 13:07:09', `updated_at` = '2012-02-22 13:07:09', `sign_in_count` = 1, `last_sign_in_ip` = '127.0.0.1' WHERE `admins`.`id` = 1
+  [1m[36m (24.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 893ms
+
+
+Started GET "/" for 127.0.0.1 at Wed Feb 22 18:37:09 +0530 2012
+  [1m[35mAdmin Load (0.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  Processing by BlogsController#index as HTML
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` [0m
+Rendered blogs/index.html.erb within layouts/blogs (11.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 156ms (Views: 149.0ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/read_blogs" for 127.0.0.1 at Wed Feb 22 18:39:45 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+  [1m[36mPost Load (1.0ms)[0m  [1mSELECT `posts`.* FROM `posts` ORDER BY post_date DESC LIMIT 5 OFFSET 0[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM `posts` 
+Rendered read_blogs/index.html.erb within layouts/application (37.0ms)
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered layouts/_navigation_links.html.erb (57.0ms)
+Completed 200 OK in 301ms (Views: 132.0ms | ActiveRecord: 62.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Wed Feb 22 18:39:48 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered blogs/_form.html.erb (15.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (56.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 179ms (Views: 120.0ms | ActiveRecord: 27.0ms)
+
+
+Started GET "/read_blogs" for 127.0.0.1 at Wed Feb 22 18:39:52 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` [0m
+  [1m[35mPost Load (1.0ms)[0m  SELECT `posts`.* FROM `posts` ORDER BY post_date DESC LIMIT 5 OFFSET 0
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM `posts` [0m
+Rendered read_blogs/index.html.erb within layouts/application (37.0ms)
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered layouts/_navigation_links.html.erb (57.0ms)
+Completed 200 OK in 298ms (Views: 133.0ms | ActiveRecord: 58.0ms)
+  [1m[36m (200.0ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (2.0ms)[0m  SHOW KEYS FROM `schema_migrations`
+  [1m[36m (161.0ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35m (0.0ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+Migrating to CreateBlogs (20111229150234)
+  [1m[36m (76.0ms)[0m  [1mCREATE TABLE `blogs` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `blogger_name` varchar(255), `blog_url` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (39.0ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20111229150234')
+Migrating to DeviseCreateAdmins (20120127111227)
+  [1m[36m (100.0ms)[0m  [1mCREATE TABLE `admins` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(128) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (2.0ms)[0m  SHOW KEYS FROM `admins`
+  [1m[36m (166.0ms)[0m  [1mCREATE UNIQUE INDEX `index_admins_on_email` ON `admins` (`email`)[0m
+  [1m[35m (2.0ms)[0m  SHOW KEYS FROM `admins`
+  [1m[36m (137.0ms)[0m  [1mCREATE UNIQUE INDEX `index_admins_on_reset_password_token` ON `admins` (`reset_password_token`)[0m
+  [1m[35m (43.0ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20120127111227')
+Migrating to AddUsernameToAdmins (20120127122331)
+  [1m[36m (286.0ms)[0m  [1mALTER TABLE `admins` ADD `user_name` varchar(255)[0m
+  [1m[35m (20.0ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20120127122331')
+Migrating to CreatePosts (20120131081248)
+  [1m[36m (111.0ms)[0m  [1mCREATE TABLE `posts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `url` varchar(255), `title` varchar(255), `content` text, `author` varchar(255), `post_date` datetime, `blog_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (55.0ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20120131081248')
+Migrating to AddBloggerTypeAndBlogTitleToBlogs (20120131082436)
+  [1m[36m (187.0ms)[0m  [1mALTER TABLE `blogs` ADD `blogger_type` varchar(255)[0m
+  [1m[35m (224.0ms)[0m  ALTER TABLE `blogs` ADD `blog_title` varchar(255)
+  [1m[36m (38.0ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20120131082436')[0m
+  [1m[35m (0.0ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+  [1m[36m (1.0ms)[0m  [1mSHOW KEYS FROM `admins`[0m
+  [1m[35m (2.0ms)[0m  SHOW KEYS FROM `blogs`
+  [1m[36m (2.0ms)[0m  [1mSHOW KEYS FROM `posts`[0m
+
+
+Started GET "/blogs" for 127.0.0.1 at Wed Feb 22 18:41:20 +0530 2012
+  Processing by BlogsController#index as HTML
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+Rendered blogs/index.html.erb within layouts/blogs (10.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 128ms (Views: 70.0ms | ActiveRecord: 28.0ms)
+
+
+Started GET "/blogs" for 127.0.0.1 at Wed Feb 22 18:41:23 +0530 2012
+  Processing by BlogsController#index as HTML
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+Rendered blogs/index.html.erb within layouts/blogs (9.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 129ms (Views: 71.0ms | ActiveRecord: 30.0ms)
+
+
+Started GET "/blogs" for 127.0.0.1 at Wed Feb 22 18:44:50 +0530 2012
+  Processing by BlogsController#index as HTML
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Completed 401 Unauthorized in 176ms
+
+
+Started GET "/admins/login" for 127.0.0.1 at Wed Feb 22 18:44:59 +0530 2012
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.0ms)
+Rendered devise/sessions/new.html.erb within layouts/application (234.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 784ms (Views: 734.1ms | ActiveRecord: 19.0ms)
+
+
+Started POST "/admins/login" for 127.0.0.1 at Wed Feb 22 18:45:17 +0530 2012
+  Processing by Devise::SessionsController#create as HTML
+  Parameters: {"commit"=>"Sign in", "admin"=>{"remember_me"=>"0", "user_name"=>"amit.thawait@tcs.com", "password"=>"[FILTERED]"}, "authenticity_token"=>"1M0mpUVz5N4qFbffXspA4jUFnmHZPl+BIj7V8GhpwdQ=", "utf8"=>"✓"}
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`user_name` = 'amit.thawait@tcs.com' LIMIT 1
+Completed 401 Unauthorized in 53ms
+  Processing by Devise::SessionsController#new as HTML
+  Parameters: {"commit"=>"Sign in", "admin"=>{"remember_me"=>"0", "user_name"=>"amit.thawait@tcs.com", "password"=>"[FILTERED]"}, "authenticity_token"=>"1M0mpUVz5N4qFbffXspA4jUFnmHZPl+BIj7V8GhpwdQ=", "utf8"=>"✓"}
+WARNING: Can't mass-assign protected attributes: user_name
+Rendered devise/shared/_links.erb (0.0ms)
+Rendered devise/sessions/new.html.erb within layouts/application (13.0ms)
+Rendered layouts/_navigation_links.html.erb (0.0ms)
+Completed 200 OK in 217ms (Views: 92.0ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/admins/sign_up" for 127.0.0.1 at Wed Feb 22 18:45:46 +0530 2012
+  Processing by Devise::RegistrationsController#new as HTML
+Rendered devise/shared/_links.erb (1.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/devise-1.5.3/app/views/devise/registrations/new.html.erb within layouts/application (103.0ms)
+Rendered layouts/_navigation_links.html.erb (0.0ms)
+Completed 200 OK in 222ms (Views: 187.0ms | ActiveRecord: 13.0ms)
+
+
+Started POST "/admins" for 127.0.0.1 at Wed Feb 22 18:45:54 +0530 2012
+  Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"commit"=>"Sign up", "admin"=>{"password_confirmation"=>"[FILTERED]", "password"=>"[FILTERED]", "email"=>"amit.thawait@tcs.com"}, "authenticity_token"=>"1M0mpUVz5N4qFbffXspA4jUFnmHZPl+BIj7V8GhpwdQ=", "utf8"=>"✓"}
+  [1m[36mSQL (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.0ms)[0m  SELECT 1 FROM `admins` WHERE `admins`.`email` = BINARY 'amit.thawait@tcs.com' LIMIT 1
+  [1m[36mSQL (54.0ms)[0m  [1mINSERT INTO `admins` (`created_at`, `current_sign_in_at`, `current_sign_in_ip`, `email`, `encrypted_password`, `last_sign_in_at`, `last_sign_in_ip`, `remember_created_at`, `reset_password_sent_at`, `reset_password_token`, `sign_in_count`, `updated_at`, `user_name`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 22 Feb 2012 13:15:55 UTC +00:00], ["current_sign_in_at", nil], ["current_sign_in_ip", nil], ["email", "amit.thawait@tcs.com"], ["encrypted_password", "$2a$10$faJP2gsSZWKflsybtgyisuc1vtG.O/iQUn2A3nQDsXU2J33JdQ2CW"], ["last_sign_in_at", nil], ["last_sign_in_ip", nil], ["remember_created_at", nil], ["reset_password_sent_at", nil], ["reset_password_token", nil], ["sign_in_count", 0], ["updated_at", Wed, 22 Feb 2012 13:15:55 UTC +00:00], ["user_name", nil]]
+  [1m[35m (32.0ms)[0m  COMMIT
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.0ms)[0m  UPDATE `admins` SET `updated_at` = '2012-02-22 13:15:55', `current_sign_in_at` = '2012-02-22 13:15:55', `last_sign_in_at` = '2012-02-22 13:15:55', `last_sign_in_ip` = '127.0.0.1', `current_sign_in_ip` = '127.0.0.1', `sign_in_count` = 1 WHERE `admins`.`id` = 1
+  [1m[36m (46.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/blogs
+Completed 302 Found in 1003ms
+
+
+Started GET "/blogs" for 127.0.0.1 at Wed Feb 22 18:45:55 +0530 2012
+  Processing by BlogsController#index as HTML
+  [1m[35mAdmin Load (0.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` [0m
+Rendered blogs/index.html.erb within layouts/blogs (2.0ms)
+Rendered layouts/_navigation_links.html.erb (2.0ms)
+Completed 200 OK in 147ms (Views: 78.0ms | ActiveRecord: 25.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Wed Feb 22 18:45:58 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered blogs/_form.html.erb (22.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (32.0ms)
+Rendered layouts/_navigation_links.html.erb (2.0ms)
+Completed 200 OK in 174ms (Views: 98.0ms | ActiveRecord: 30.0ms)
+
+
+Started POST "/blogs" for 127.0.0.1 at Wed Feb 22 18:46:43 +0530 2012
+  Processing by BlogsController#create as HTML
+  Parameters: {"commit"=>"Create Blog", "blog"=>{"blogger_name"=>"Gopinath S", "blog_url"=>"http://gopinath-commandline.blogspot.in/"}, "authenticity_token"=>"1M0mpUVz5N4qFbffXspA4jUFnmHZPl+BIj7V8GhpwdQ=", "utf8"=>"✓"}
+  [1m[36mAdmin Load (0.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  BEGIN
+  [1m[36m (1.0ms)[0m  [1mSELECT 1 FROM `blogs` WHERE `blogs`.`blog_url` = BINARY 'http://gopinath-commandline.blogspot.in/' LIMIT 1[0m
+  [1m[35mSQL (3.0ms)[0m  INSERT INTO `blogs` (`blog_title`, `blog_url`, `blogger_name`, `blogger_type`, `created_at`, `updated_at`) VALUES (?, ?, ?, ?, ?, ?)  [["blog_title", nil], ["blog_url", "http://gopinath-commandline.blogspot.in/"], ["blogger_name", "Gopinath S"], ["blogger_type", nil], ["created_at", Wed, 22 Feb 2012 13:16:43 UTC +00:00], ["updated_at", Wed, 22 Feb 2012 13:16:43 UTC +00:00]]
+  [1m[36m (35.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/blogs/1
+Completed 302 Found in 1058ms
+
+
+Started GET "/blogs/1" for 127.0.0.1 at Wed Feb 22 18:46:44 +0530 2012
+  Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mBlog Load (5.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", "1"]]
+Rendered blogs/show.html.erb within layouts/blogs (7.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 130ms (Views: 67.0ms | ActiveRecord: 35.0ms)
+
+
+Started GET "/blogs" for 127.0.0.1 at Wed Feb 22 18:46:46 +0530 2012
+  Processing by BlogsController#index as HTML
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mBlog Load (0.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` [0m
+Rendered blogs/index.html.erb within layouts/blogs (9.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 140ms (Views: 71.0ms | ActiveRecord: 36.0ms)
+
+
+Started GET "/read_blogs" for 127.0.0.1 at Wed Feb 22 18:46:49 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+  [1m[36mPost Load (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` ORDER BY post_date DESC LIMIT 5 OFFSET 0[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM `posts` 
+Rendered read_blogs/index.html.erb within layouts/application (44.0ms)
+  [1m[36mAdmin Load (8.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered layouts/_navigation_links.html.erb (56.0ms)
+Completed 200 OK in 312ms (Views: 142.0ms | ActiveRecord: 57.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Wed Feb 22 18:55:19 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered blogs/_form.html.erb (13.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (34.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 331ms (Views: 144.0ms | ActiveRecord: 95.0ms)
+
+
+Started POST "/blogs" for 127.0.0.1 at Wed Feb 22 18:55:33 +0530 2012
+  Processing by BlogsController#create as HTML
+  Parameters: {"commit"=>"Create Blog", "blog"=>{"blogger_name"=>"Abhishek Bahuguna", "blog_url"=>"http://abhishekbahuguna.blogspot.in/"}, "authenticity_token"=>"1M0mpUVz5N4qFbffXspA4jUFnmHZPl+BIj7V8GhpwdQ=", "utf8"=>"✓"}
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  BEGIN
+  [1m[36m (1.0ms)[0m  [1mSELECT 1 FROM `blogs` WHERE `blogs`.`blog_url` = BINARY 'http://abhishekbahuguna.blogspot.in/' LIMIT 1[0m
+  [1m[35mSQL (3.0ms)[0m  INSERT INTO `blogs` (`blog_title`, `blog_url`, `blogger_name`, `blogger_type`, `created_at`, `updated_at`) VALUES (?, ?, ?, ?, ?, ?)  [["blog_title", nil], ["blog_url", "http://abhishekbahuguna.blogspot.in/"], ["blogger_name", "Abhishek Bahuguna"], ["blogger_type", nil], ["created_at", Wed, 22 Feb 2012 13:25:34 UTC +00:00], ["updated_at", Wed, 22 Feb 2012 13:25:34 UTC +00:00]]
+  [1m[36m (37.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mSELECT 1 FROM `blogs` WHERE (`blogs`.`blog_url` = BINARY 'http://abhishekbahuguna.blogspot.in/' AND `blogs`.`id` != 2) LIMIT 1[0m
+  [1m[35m (1.0ms)[0m  UPDATE `blogs` SET `updated_at` = '2012-02-22 13:25:36', `blog_title` = '\nTech-Wise\n' WHERE `blogs`.`id` = 2
+  [1m[36m (38.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (0.0ms)[0m  BEGIN
+  [1m[36mSQL (25.0ms)[0m  [1mINSERT INTO `posts` (`author`, `blog_id`, `content`, `created_at`, `post_date`, `title`, `updated_at`, `url`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["author", "\n\nAbhishek\n\n"], ["blog_id", 2], ["content", "\n<div dir=\"ltr\" style=\"text-align: left;\" trbidi=\"on\">\n<br>\nFor those who are still wondering, <b>CLI</b> is the Command Line Interface.<br><br><span style=\"color: #2f2f2f; font-family: Arial; font-size: x-small;\"><span style=\"color: #2f2f2f; font-family: Arial; font-size: x-small;\"><span style=\"color: #2f2f2f; font-family: Arial; font-size: x-small;\">You might be a bit amused with the weird title, but I found it appropriate to name<b> it</b> this way as this <b>is</b> the first time ever that I have tried out CLI.<br><br><u>Here are few of my observations:</u><br><br>\n1) For new users, it might take a while to understand the ease and power of CLI.<br><br>\n2) Once you are familiar with the commonly used commands, you can perform many operations much quicker than GUI.<br><br><ul style=\"text-align: left;\">\n<li>Eg. You can type in a single line command to move/copy a file to a folder 10 folders deep. Imagine Copying the file and then performing10 double clicks before you can paste it again !</li>\n<li>Another example would be to append the contents of a file into another by a single line command opposed to opening file &gt; copying &gt; opening another file &gt; pasting.</li>\n</ul>\n3) Operations which you can carry out with CLI are much faster compared to GUI. Consider searching a part of text in a folder having many text files.<br><br>\n4) It also provides an option to take the output of one command and use it as the input to another. How cool is that !<br><br>\n5) CLI uses much less resources compared to a GUI.<br><br><br><span style=\"color: #2f2f2f; font-family: Arial; font-size: x-small;\"><span style=\"color: #2f2f2f; font-family: Arial; font-size: x-small;\"><span style=\"color: #2f2f2f; font-family: Arial; font-size: x-small;\">I have not gone into the details of each and every command that you can use with CLI as there are a lots of such materials available on the internet.<br>\nHere are a few links that you can use to start with the command line.<br><br><a href=\"http://cli.learncodethehardway.org/book/\">http://cli.learncodethehardway.org/book/</a><br><br><a href=\"http://freeengineer.org/learnUNIXin10minutes.html\">http://freeengineer.org/learnUNIXin10minutes.html</a><br><br><a href=\"http://matt.might.net/articles/basic-unix/\">http://matt.might.net/articles/basic-unix/</a><br><div>\n<br>\n</div>\n</span></span></span></span></span></span>\n</div>\n<div style=\"clear: both;\"></div>"], ["created_at", Wed, 22 Feb 2012 13:25:36 UTC +00:00], ["post_date", Tue, 21 Feb 2012 12:52:00 UTC +00:00], ["title", "\nMy 'First date' with CLI\n"], ["updated_at", Wed, 22 Feb 2012 13:25:36 UTC +00:00], ["url", "http://abhishekbahuguna.blogspot.in/2012/02/my-first-date-with-cli.html"]]
+  [1m[35m (31.0ms)[0m  COMMIT
+Redirected to http://localhost:3000/blogs/2
+Completed 302 Found in 2517ms
+
+
+Started GET "/blogs/2" for 127.0.0.1 at Wed Feb 22 18:55:36 +0530 2012
+  Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", "2"]]
+Rendered blogs/show.html.erb within layouts/blogs (8.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 135ms (Views: 72.0ms | ActiveRecord: 26.0ms)
+
+
+Started GET "/read_blogs" for 127.0.0.1 at Wed Feb 22 18:55:39 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` [0m
+  [1m[35mPost Load (5.0ms)[0m  SELECT `posts`.* FROM `posts` ORDER BY post_date DESC LIMIT 5 OFFSET 0
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM `posts` 
+Rendered read_blogs/index.html.erb within layouts/application (79.0ms)
+  [1m[36mAdmin Load (9.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered layouts/_navigation_links.html.erb (119.0ms)
+Completed 200 OK in 456ms (Views: 258.0ms | ActiveRecord: 83.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Wed Feb 22 18:57:22 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered blogs/_form.html.erb (13.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (22.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 160ms (Views: 86.0ms | ActiveRecord: 42.0ms)
+
+
+Started POST "/blogs" for 127.0.0.1 at Wed Feb 22 18:57:37 +0530 2012
+  Processing by BlogsController#create as HTML
+  Parameters: {"commit"=>"Create Blog", "blog"=>{"blogger_name"=>"Abhishek Gopalan ", "blog_url"=>"http://abhishek4717.blogspot.in/"}, "authenticity_token"=>"1M0mpUVz5N4qFbffXspA4jUFnmHZPl+BIj7V8GhpwdQ=", "utf8"=>"✓"}
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mSELECT 1 FROM `blogs` WHERE `blogs`.`blog_url` = BINARY 'http://abhishek4717.blogspot.in/' LIMIT 1[0m
+  [1m[35mSQL (4.0ms)[0m  INSERT INTO `blogs` (`blog_title`, `blog_url`, `blogger_name`, `blogger_type`, `created_at`, `updated_at`) VALUES (?, ?, ?, ?, ?, ?)  [["blog_title", nil], ["blog_url", "http://abhishek4717.blogspot.in/"], ["blogger_name", "Abhishek Gopalan "], ["blogger_type", nil], ["created_at", Wed, 22 Feb 2012 13:27:38 UTC +00:00], ["updated_at", Wed, 22 Feb 2012 13:27:38 UTC +00:00]]
+  [1m[36m (52.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (1.0ms)[0m  BEGIN
+  [1m[36m (1.0ms)[0m  [1mSELECT 1 FROM `blogs` WHERE (`blogs`.`blog_url` = BINARY 'http://abhishek4717.blogspot.in/' AND `blogs`.`id` != 3) LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  UPDATE `blogs` SET `blog_title` = '\nTechnical Learnings\n', `updated_at` = '2012-02-22 13:27:41' WHERE `blogs`.`id` = 3
+  [1m[36m (196.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (0.0ms)[0m  BEGIN
+  [1m[36mSQL (50.0ms)[0m  [1mINSERT INTO `posts` (`author`, `blog_id`, `content`, `created_at`, `post_date`, `title`, `updated_at`, `url`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["author", "\n\nAbhishek Gopalan\n\n"], ["blog_id", 3], ["content", "\n<div dir=\"ltr\" style=\"text-align: left;\" trbidi=\"on\">\n<div style='font-family: \"Helvetica Neue\",Arial,Helvetica,sans-serif;'>\n<title>Full Stack development</title>\n<style>\n<!--\n /* Font Definitions */\n @font-face\n {font-family:Wingdings;\n panose-1:5 0 0 0 0 0 0 0 0 0;}\n@font-face\n {font-family:Tahoma;\n panose-1:2 11 6 4 3 5 4 4 2 4;}\n@font-face\n {font-family:Palatino;\n panose-1:2 2 5 0 0 0 0 0 0 0;}\n@font-face\n {font-family:\"Book Antiqua\";\n panose-1:2 4 6 2 5 3 5 3 3 4;}\n /* Style Definitions */\n p.MsoNormal, li.MsoNormal, div.MsoNormal\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:0in;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\nh1\n {margin-top:0in;\n margin-right:.75in;\n margin-bottom:15.0pt;\n margin-left:28.1pt;\n text-indent:-28.1pt;\n page-break-before:always;\n font-size:22.0pt;\n font-family:Arial;\n font-weight:normal;}\nh2\n {margin-top:.25in;\n margin-right:.25in;\n margin-bottom:6.0pt;\n margin-left:0in;\n page-break-after:avoid;\n font-size:12.0pt;\n font-family:Arial;\n text-transform:uppercase;}\nh3\n {margin-top:12.0pt;\n margin-right:.25in;\n margin-bottom:6.0pt;\n margin-left:0in;\n page-break-after:avoid;\n font-size:13.0pt;\n font-family:Arial;}\np.MsoToc1, li.MsoToc1, div.MsoToc1\n {margin-top:0in;\n margin-right:1.0in;\n margin-bottom:9.0pt;\n margin-left:41.05pt;\n text-indent:-.25in;\n font-size:13.0pt;\n font-family:Arial;\n color:#002960;}\np.MsoToc2, li.MsoToc2, div.MsoToc2\n {margin-top:0in;\n margin-right:1.0in;\n margin-bottom:9.0pt;\n margin-left:41.05pt;\n font-size:13.0pt;\n font-family:Arial;}\np.MsoToc3, li.MsoToc3, div.MsoToc3\n {margin-top:0in;\n margin-right:1.0in;\n margin-bottom:9.0pt;\n margin-left:59.05pt;\n font-size:13.0pt;\n font-family:Arial;}\np.MsoToc4, li.MsoToc4, div.MsoToc4\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:.5in;\n font-size:13.0pt;\n font-family:Arial;}\np.MsoToc5, li.MsoToc5, div.MsoToc5\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:48.0pt;\n font-size:13.0pt;\n font-family:Arial;}\np.MsoToc6, li.MsoToc6, div.MsoToc6\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:60.0pt;\n font-size:13.0pt;\n font-family:Arial;}\np.MsoToc7, li.MsoToc7, div.MsoToc7\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:3.0pt;\n margin-left:0in;\n font-size:13.0pt;\n font-family:Arial;}\np.MsoToc8, li.MsoToc8, div.MsoToc8\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:84.0pt;\n font-size:13.0pt;\n font-family:Arial;}\np.MsoToc9, li.MsoToc9, div.MsoToc9\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:96.0pt;\n font-size:13.0pt;\n font-family:Arial;}\np.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:0in;\n margin-left:.2in;\n margin-bottom:.0001pt;\n text-indent:-.2in;\n font-size:9.0pt;\n font-family:\"Times New Roman\";}\np.MsoCommentText, li.MsoCommentText, div.MsoCommentText\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:0in;\n font-size:10.0pt;\n font-family:\"Times New Roman\";}\np.MsoHeader, li.MsoHeader, div.MsoHeader\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:0in;\n font-size:13.0pt;\n font-family:\"Times New Roman\";\n font-style:italic;}\np.MsoFooter, li.MsoFooter, div.MsoFooter\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:0in;\n text-align:right;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.MsoCaption, li.MsoCaption, div.MsoCaption\n {margin-top:6.0pt;\n margin-right:0in;\n margin-bottom:6.0pt;\n margin-left:0in;\n font-size:13.0pt;\n font-family:\"Times New Roman\";\n font-weight:bold;}\np.MsoEnvelopeAddress, li.MsoEnvelopeAddress, div.MsoEnvelopeAddress\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:0in;\n margin-left:2.0in;\n margin-bottom:.0001pt;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.MsoEnvelopeReturn, li.MsoEnvelopeReturn, div.MsoEnvelopeReturn\n {margin:0in;\n margin-bottom:.0001pt;\n font-size:10.0pt;\n font-family:\"Times New Roman\";}\nspan.MsoFootnoteReference\n {position:relative;\n top:-3.0pt;}\nspan.MsoPageNumber\n {font-family:Arial;}\nspan.MsoEndnoteReference\n {vertical-align:super;}\np.MsoEndnoteText, li.MsoEndnoteText, div.MsoEndnoteText\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:0in;\n font-size:10.0pt;\n font-family:\"Times New Roman\";}\np.MsoMacroText, li.MsoMacroText, div.MsoMacroText\n {margin-top:0in;\n margin-right:-2.9in;\n margin-bottom:0in;\n margin-left:0in;\n margin-bottom:.0001pt;\n font-size:10.0pt;\n font-family:Arial;}\np.MsoMessageHeader, li.MsoMessageHeader, div.MsoMessageHeader\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:56.7pt;\n text-indent:-56.7pt;\n background:#CCCCCC;\n border:none;\n padding:0in;\n font-size:12.0pt;\n font-family:Arial;}\np.MsoAcetate, li.MsoAcetate, div.MsoAcetate\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:0in;\n font-size:8.0pt;\n font-family:Tahoma;}\np.31subtitle, li.31subtitle, div.31subtitle\n {margin-top:0in;\n margin-right:2.5in;\n margin-bottom:.25in;\n margin-left:0in;\n font-size:12.0pt;\n font-family:Arial;}\np.40address, li.40address, div.40address\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:0in;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.39restrictivenote, li.39restrictivenote, div.39restrictivenote\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:0in;\n font-size:10.0pt;\n font-family:Arial;\n text-transform:uppercase;}\np.86exhmeasure, li.86exhmeasure, div.86exhmeasure\n {margin-top:10.0pt;\n margin-right:0in;\n margin-bottom:0in;\n margin-left:0in;\n margin-bottom:.0001pt;\n font-size:9.0pt;\n font-family:Arial;\n color:#999999;\n text-transform:uppercase;}\np.32chaptertitle, li.32chaptertitle, div.32chaptertitle\n {margin-top:0in;\n margin-right:.75in;\n margin-bottom:15.0pt;\n margin-left:28.1pt;\n text-indent:-28.1pt;\n page-break-before:always;\n font-size:22.0pt;\n font-family:Arial;}\np.20major, li.20major, div.20major\n {margin-top:.25in;\n margin-right:.25in;\n margin-bottom:6.0pt;\n margin-left:0in;\n page-break-after:avoid;\n font-size:12.0pt;\n font-family:Arial;\n text-transform:uppercase;\n font-weight:bold;}\np.21minor, li.21minor, div.21minor\n {margin-top:12.0pt;\n margin-right:.25in;\n margin-bottom:6.0pt;\n margin-left:0in;\n page-break-after:avoid;\n font-size:13.0pt;\n font-family:Arial;\n font-weight:bold;}\np.60exhnormal, li.60exhnormal, div.60exhnormal\n {margin-top:10.0pt;\n margin-right:0in;\n margin-bottom:0in;\n margin-left:0in;\n margin-bottom:.0001pt;\n font-size:11.0pt;\n font-family:Arial;\n text-transform:uppercase;}\np.01squarebullet, li.01squarebullet, div.01squarebullet\n {margin-top:0in;\n margin-right:.1in;\n margin-bottom:6.0pt;\n margin-left:.25in;\n text-indent:-.25in;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.02dash, li.02dash, div.02dash\n {margin-top:0in;\n margin-right:.1in;\n margin-bottom:6.0pt;\n margin-left:32.2pt;\n text-indent:-14.2pt;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.03opensquarebullet, li.03opensquarebullet, div.03opensquarebullet\n {margin-top:0in;\n margin-right:.1in;\n margin-bottom:6.0pt;\n margin-left:.65in;\n text-indent:-.2in;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.04shortdash, li.04shortdash, div.04shortdash\n {margin-top:0in;\n margin-right:.1in;\n margin-bottom:6.0pt;\n margin-left:60.55pt;\n text-indent:-14.2pt;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.05number1, li.05number1, div.05number1\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:6.0pt;\n margin-left:.25in;\n text-indent:-.25in;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.06letter2, li.06letter2, div.06letter2\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:6.0pt;\n margin-left:32.3pt;\n text-indent:-14.45pt;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.07number3, li.07number3, div.07number3\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:6.0pt;\n margin-left:46.2pt;\n text-indent:-13.9pt;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.08letter4, li.08letter4, div.08letter4\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:6.0pt;\n margin-left:60.65pt;\n text-indent:-14.45pt;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.10tablenormal, li.10tablenormal, div.10tablenormal\n {margin-top:3.0pt;\n margin-right:14.45pt;\n margin-bottom:3.0pt;\n margin-left:0in;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.11tablesquarebullet, li.11tablesquarebullet, div.11tablesquarebullet\n {margin-top:3.0pt;\n margin-right:14.45pt;\n margin-bottom:3.0pt;\n margin-left:.2in;\n text-indent:-.2in;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.12tabledash, li.12tabledash, div.12tabledash\n {margin-top:3.0pt;\n margin-right:14.45pt;\n margin-bottom:3.0pt;\n margin-left:31.95pt;\n text-indent:-14.2pt;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.13tableopensquarebullet, li.13tableopensquarebullet, div.13tableopensquarebullet\n {margin-top:3.0pt;\n margin-right:14.45pt;\n margin-bottom:3.0pt;\n margin-left:46.1pt;\n text-indent:-14.15pt;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.14tableshortdash, li.14tableshortdash, div.14tableshortdash\n {margin-top:3.0pt;\n margin-right:14.45pt;\n margin-bottom:3.0pt;\n margin-left:60.3pt;\n text-indent:-14.2pt;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.15tableheading, li.15tableheading, div.15tableheading\n {margin-top:3.0pt;\n margin-right:14.45pt;\n margin-bottom:3.0pt;\n margin-left:0in;\n font-size:13.0pt;\n font-family:\"Times New Roman\";\n font-weight:bold;}\np.16tablenumber1, li.16tablenumber1, div.16tablenumber1\n {margin-top:3.0pt;\n margin-right:14.45pt;\n margin-bottom:3.0pt;\n margin-left:.25in;\n text-indent:-.25in;\n line-height:115%;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.17tableletter2, li.17tableletter2, div.17tableletter2\n {margin-top:3.0pt;\n margin-right:14.45pt;\n margin-bottom:3.0pt;\n margin-left:32.3pt;\n text-indent:-14.45pt;\n line-height:115%;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.18tablenumber3, li.18tablenumber3, div.18tablenumber3\n {margin-top:3.0pt;\n margin-right:14.45pt;\n margin-bottom:3.0pt;\n margin-left:46.2pt;\n text-indent:-13.9pt;\n line-height:115%;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.19tableletter4, li.19tableletter4, div.19tableletter4\n {margin-top:3.0pt;\n margin-right:14.45pt;\n margin-bottom:3.0pt;\n margin-left:60.65pt;\n text-indent:-14.45pt;\n line-height:115%;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.22numberedparagraph, li.22numberedparagraph, div.22numberedparagraph\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:0in;\n font-size:12.0pt;\n font-family:Arial;\n font-weight:bold;}\np.23threesquarebulletsbreak, li.23threesquarebulletsbreak, div.23threesquarebulletsbreak\n {margin-top:24.0pt;\n margin-right:0in;\n margin-bottom:24.0pt;\n margin-left:0in;\n text-align:center;\n font-size:13.0pt;\n font-family:Arial;}\np.24enddate, li.24enddate, div.24enddate\n {margin-top:6.0pt;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:0in;\n border:none;\n padding:0in;\n font-size:10.0pt;\n font-family:Arial;}\np.30documenttitle, li.30documenttitle, div.30documenttitle\n {margin-top:30.0pt;\n margin-right:.75in;\n margin-bottom:.25in;\n margin-left:0in;\n font-size:22.0pt;\n font-family:Arial;}\np.33contentschapter, li.33contentschapter, div.33contentschapter\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:50.0pt;\n margin-left:0in;\n font-size:22.0pt;\n font-family:Arial;}\np.36opener, li.36opener, div.36opener\n {margin:0in;\n margin-bottom:.0001pt;\n text-indent:-1.5in;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.TitlePageDisclaimer, li.TitlePageDisclaimer, div.TitlePageDisclaimer\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:0in;\n font-size:9.0pt;\n font-family:Arial;}\np.41closing, li.41closing, div.41closing\n {margin-top:3.0pt;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:197.9pt;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.42cc, li.42cc, div.42cc\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:27.2pt;\n text-indent:-27.2pt;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.70exhtblnormal, li.70exhtblnormal, div.70exhtblnormal\n {margin-top:3.0pt;\n margin-right:14.45pt;\n margin-bottom:3.0pt;\n margin-left:.1in;\n font-size:12.0pt;\n font-family:Arial;}\np.71exhtblbullet, li.71exhtblbullet, div.71exhtblbullet\n {margin-top:3.0pt;\n margin-right:14.45pt;\n margin-bottom:3.0pt;\n margin-left:.25in;\n text-indent:-.25in;\n font-size:12.0pt;\n font-family:Arial;}\np.72exhtbldash, li.72exhtbldash, div.72exhtbldash\n {margin-top:3.0pt;\n margin-right:14.45pt;\n margin-bottom:3.0pt;\n margin-left:32.2pt;\n text-indent:-14.2pt;\n font-size:12.0pt;\n font-family:Arial;}\np.73exhtbldot, li.73exhtbldot, div.73exhtbldot\n {margin-top:3.0pt;\n margin-right:14.45pt;\n margin-bottom:3.0pt;\n margin-left:46.35pt;\n text-indent:-14.15pt;\n font-size:12.0pt;\n font-family:Arial;}\np.74exhtblddot, li.74exhtblddot, div.74exhtblddot\n {margin-top:3.0pt;\n margin-right:14.45pt;\n margin-bottom:3.0pt;\n margin-left:60.55pt;\n text-indent:-14.2pt;\n font-size:12.0pt;\n font-family:Arial;}\np.75exhtblheading, li.75exhtblheading, div.75exhtblheading\n {margin-top:3.0pt;\n margin-right:14.45pt;\n margin-bottom:3.0pt;\n margin-left:0in;\n font-size:12.0pt;\n font-family:Arial;\n font-weight:bold;}\np.76exhtblnumber1, li.76exhtblnumber1, div.76exhtblnumber1\n {margin-top:3.0pt;\n margin-right:14.45pt;\n margin-bottom:3.0pt;\n margin-left:.25in;\n text-indent:-.25in;\n line-height:115%;\n font-size:12.0pt;\n font-family:Arial;}\np.77exhtblletter2, li.77exhtblletter2, div.77exhtblletter2\n {margin-top:3.0pt;\n margin-right:14.45pt;\n margin-bottom:3.0pt;\n margin-left:32.3pt;\n text-indent:-14.45pt;\n line-height:115%;\n font-size:12.0pt;\n font-family:Arial;}\np.78exhtblnumber3, li.78exhtblnumber3, div.78exhtblnumber3\n {margin-top:3.0pt;\n margin-right:14.45pt;\n margin-bottom:3.0pt;\n margin-left:46.2pt;\n text-indent:-13.9pt;\n line-height:115%;\n font-size:12.0pt;\n font-family:Arial;}\np.79exhtblletter4, li.79exhtblletter4, div.79exhtblletter4\n {margin-top:3.0pt;\n margin-right:14.45pt;\n margin-bottom:3.0pt;\n margin-left:60.65pt;\n text-indent:-14.45pt;\n line-height:115%;\n font-size:12.0pt;\n font-family:Arial;}\np.82exhnumber, li.82exhnumber, div.82exhnumber\n {margin-top:10.0pt;\n margin-right:0in;\n margin-bottom:0in;\n margin-left:0in;\n margin-bottom:.0001pt;\n page-break-after:avoid;\n font-size:11.0pt;\n font-family:Arial;\n text-transform:uppercase;}\np.83exhtitle, li.83exhtitle, div.83exhtitle\n {margin-top:5.0pt;\n margin-right:0in;\n margin-bottom:0in;\n margin-left:0in;\n margin-bottom:.0001pt;\n font-size:11.0pt;\n font-family:Arial;\n text-transform:uppercase;\n font-weight:bold;}\np.85exhsticker, li.85exhsticker, div.85exhsticker\n {margin-top:5.0pt;\n margin-right:0in;\n margin-bottom:0in;\n margin-left:5.65pt;\n margin-bottom:.0001pt;\n border:none;\n padding:0in;\n font-size:9.0pt;\n font-family:Arial;}\np.88exhsource, li.88exhsource, div.88exhsource\n {margin-top:10.0pt;\n margin-right:0in;\n margin-bottom:2.0pt;\n margin-left:41.75pt;\n text-indent:-41.75pt;\n font-size:9.0pt;\n font-family:Arial;\n text-transform:uppercase;}\np.89exhnote, li.89exhnote, div.89exhnote\n {margin-top:10.0pt;\n margin-right:0in;\n margin-bottom:2.0pt;\n margin-left:.35in;\n text-indent:-.35in;\n font-size:9.0pt;\n font-family:Arial;\n text-transform:uppercase;}\np.90exhnote, li.90exhnote, div.90exhnote\n {margin-top:10.0pt;\n margin-right:0in;\n margin-bottom:2.0pt;\n margin-left:9.35pt;\n text-indent:-9.35pt;\n font-size:9.0pt;\n font-family:Arial;\n text-transform:uppercase;}\np.SOPP42cc, li.SOPP42cc, div.SOPP42cc\n {margin-top:24.0pt;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:27.2pt;\n text-indent:-27.2pt;\n font-size:13.0pt;\n font-family:\"Times New Roman\";}\np.DocumentID-BL, li.DocumentID-BL, div.DocumentID-BL\n {margin:0in;\n margin-bottom:.0001pt;\n font-size:8.0pt;\n font-family:\"Times New Roman\";}\np.DocumentID-BLT, li.DocumentID-BLT, div.DocumentID-BLT\n {margin:0in;\n margin-bottom:.0001pt;\n font-size:8.0pt;\n font-family:\"Times New Roman\";\n color:red;\n display:none;}\np.DocumentID-TR, li.DocumentID-TR, div.DocumentID-TR\n {margin:0in;\n margin-bottom:.0001pt;\n text-align:right;\n font-size:8.0pt;\n font-family:\"Times New Roman\";}\np.DocumentID-TRT, li.DocumentID-TRT, div.DocumentID-TRT\n {margin:0in;\n margin-bottom:.0001pt;\n text-align:right;\n font-size:8.0pt;\n font-family:\"Times New Roman\";\n color:red;\n display:none;}\nspan.StyleArialLatin13pt\n {font-family:Arial;\n color:windowtext;}\nspan.StyleArial14pt\n {font-family:Arial;\n color:windowtext;}\np.StyleArial22ptCustomAfter10pt, li.StyleArial22ptCustomAfter10pt, div.StyleArial22ptCustomAfter10pt\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:10.0pt;\n margin-left:0in;\n font-size:22.0pt;\n font-family:Arial;}\np.TitlePageTitle, li.TitlePageTitle, div.TitlePageTitle\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:10.0pt;\n margin-left:0in;\n font-size:22.0pt;\n font-family:Arial;}\np.TitlePageClient, li.TitlePageClient, div.TitlePageClient\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:0in;\n font-size:14.0pt;\n font-family:Arial;}\np.TitlePageDocument, li.TitlePageDocument, div.TitlePageDocument\n {margin-top:0in;\n margin-right:0in;\n margin-bottom:9.0pt;\n margin-left:0in;\n font-size:13.0pt;\n font-family:Arial;}\np.SOPP20major, li.SOPP20major, div.SOPP20major\n {margin-top:.25in;\n margin-right:.25in;\n margin-bottom:6.0pt;\n margin-left:0in;\n page-break-after:avoid;\n font-size:12.0pt;\n font-family:Arial;\n text-transform:uppercase;\n font-weight:bold;}\np.SOPP21minor, li.SOPP21minor, div.SOPP21minor\n {margin-top:12.0pt;\n margin-right:.25in;\n margin-bottom:6.0pt;\n margin-left:0in;\n page-break-after:avoid;\n font-size:13.0pt;\n font-family:Arial;\n font-weight:bold;}\np.SOPP30documenttitle, li.SOPP30documenttitle, div.SOPP30documenttitle\n {margin-top:30.0pt;\n margin-right:.75in;\n margin-bottom:.25in;\n margin-left:0in;\n font-size:22.0pt;\n font-family:Arial;}\n /* Page Definitions */\n @page Section1\n {size:8.5in 11.0in;\n margin:1.0in 1.25in 1.0in 1.25in;}\ndiv.Section1\n {page:Section1;}\n /* List Definitions */\n ol\n {margin-bottom:0in;}\nul\n {margin-bottom:0in;}\n-->\n</style>\n</div>\n<div class=\"Section1\" style='font-family: \"Helvetica Neue\",Arial,Helvetica,sans-serif;'>\n<div class=\"MsoNormal\">\n<span style=\"font-size: small;\"><span style='font-family: \"Helvetica Neue\",Arial,Helvetica,sans-serif; font-size: large;'><b><u>First Experience with Linux Command Line:</u></b></span> </span>\n</div>\n<div class=\"MsoNormal\">\n<div style='font-family: \"Helvetica Neue\",Arial,Helvetica,sans-serif;'>\n<span style=\"font-size: small;\">Linux command line interface made me realize the power that\ncommand lines have even today. Their power lies in the simplicity. They are\nfast and more efficient than the GUI counterparts. The only difficulty is to get familiar with commands and various options associated with them.</span>\n</div>\n<br><div style='font-family: \"Helvetica Neue\",Arial,Helvetica,sans-serif;'>\n<span style=\"font-size: large;\"><u><b>Process Identifier (PID)</b></u>:</span>\n</div>\n<br><div style='font-family: \"Helvetica Neue\",Arial,Helvetica,sans-serif;'>\n<span style=\"font-size: large;\"><span style=\"font-size: small;\"><span style=\"font-size: small;\">Every process within a Operating System will have a unique process identifier number assigned to them to uniquely identify them</span>. Whenever user tries to terminate a process, all the child processes are terminated before terminating the parent process. In UNIX there are PID 0  and 1 which are reserved for the kernel.</span></span>\n</div>\n<ul style='font-family: \"Helvetica Neue\",Arial,Helvetica,sans-serif; text-align: left;'>\n<li><span style=\"font-size: large;\"><span style=\"font-size: small;\"><i>swapper </i>or <i>sched </i>is assigned PID 0 which is responsible for paging.</span></span></li>\n<li><span style=\"font-size: large;\"><span style=\"font-size: small;\"><i>init</i> process is assigned PID 1 which is responsible for starting and shutting down the system. </span></span></li>\n</ul>\n<span style='font-family: \"Helvetica Neue\",Arial,Helvetica,sans-serif; font-size: large;'> </span> </div>\n<div class=\"MsoNormal\" style='font-family: \"Helvetica Neue\",Arial,Helvetica,sans-serif;'>\n<span style=\"font-size: large;\"><u><b>Pipe operation</b></u>:</span>\n</div>\n<div class=\"MsoNormal\" style='font-family: \"Helvetica Neue\",Arial,Helvetica,sans-serif;'>\n<span style=\"font-size: small;\">One of the interesting operations involves the use of Pipes.\nPipes provide a dynamic way to concatenate operations. It redirects output from\none operation to another operation.  </span>\n</div>\n<div class=\"MsoNormal\">\n<div style='font-family: \"Helvetica Neue\",Arial,Helvetica,sans-serif;'>\n<span style=\"font-size: small;\">As an example to pipe operation lets try to find the PID of process from a list of processes by just specifying the name.</span>\n</div>\n<br><br><table align=\"center\" cellpadding=\"0\" cellspacing=\"0\" class=\"tr-caption-container\" style=\"margin-left: auto; margin-right: auto; text-align: center;\"><tbody>\n<tr><td style=\"text-align: center;\"><a href=\"http://4.bp.blogspot.com/-pycHMfm9Bpc/T0TVwJIsRUI/AAAAAAAAABw/NWj8f6w1Rwc/s1600/ps.png\" imageanchor=\"1\" style=\"margin-left: auto; margin-right: auto;\"><img border=\"0\" height=\"245\" src=\"http://4.bp.blogspot.com/-pycHMfm9Bpc/T0TVwJIsRUI/AAAAAAAAABw/NWj8f6w1Rwc/s400/ps.png\" width=\"400\"></a></td></tr>\n<tr><td class=\"tr-caption\" style=\"text-align: center;\">Running process of the user</td></tr>\n</tbody></table>\n<br><div style='font-family: \"Helvetica Neue\",Arial,Helvetica,sans-serif;'>\n<span style=\"font-size: small;\">Screenshot above shows the list of running processes on my system. Task is to find the Process ID(s) of process named '<i>cat</i>'. </span>\n</div>\n</div>\n<div class=\"MsoNormal\" style='font-family: \"Helvetica Neue\",Arial,Helvetica,sans-serif;'>\n<span style=\"font-size: small;\">One of the approach is to use ‘<i>grep</i>’ command to print\nthe pid.</span>\n</div>\n<div align=\"center\" class=\"MsoNormal\" style=\"text-align: center;\">\n<i>ps | grep cat | cut -c1-5</i><br><br><table align=\"center\" cellpadding=\"0\" cellspacing=\"0\" class=\"tr-caption-container\" style=\"margin-left: auto; margin-right: auto; text-align: center;\"><tbody>\n<tr><td style=\"text-align: center;\"><a href=\"http://4.bp.blogspot.com/-bey-M8AwHPA/T0TYK0j5i5I/AAAAAAAAAB4/Mxa_44hgFMY/s1600/Command.png\" imageanchor=\"1\" style=\"margin-left: auto; margin-right: auto;\"><img border=\"0\" height=\"228\" src=\"http://4.bp.blogspot.com/-bey-M8AwHPA/T0TYK0j5i5I/AAAAAAAAAB4/Mxa_44hgFMY/s400/Command.png\" width=\"400\"></a></td></tr>\n<tr><td class=\"tr-caption\" style=\"text-align: center;\"><br></td></tr>\n</tbody></table>\n</div>\n<div class=\"MsoNormal\">\n<div style='font-family: \"Helvetica Neue\",Arial,Helvetica,sans-serif;'>\n<span style=\"font-size: small;\">First of the operation involves the use of ‘ps’ to find all\nthe running process that current user has initiated. The output of ‘<i>ps</i>’\ncommand is then feed as input to ‘<i>grep</i>’ command that tries to match a\npattern ‘<i>cat</i>’ within the output. Finally ‘<i>cut</i>’ will try to cut\nexact a portion of the string. In this case it will try to skim characters 1 to\n5 and display it on the screen.The result is as displayed below.</span>\n</div>\n<br><table align=\"center\" cellpadding=\"0\" cellspacing=\"0\" class=\"tr-caption-container\" style=\"margin-left: auto; margin-right: auto; text-align: center;\"><tbody>\n<tr><td style=\"text-align: center;\"><a href=\"http://2.bp.blogspot.com/-ay4Wxg-NI7U/T0TZHzOqR7I/AAAAAAAAACA/gAzM1R_UQdo/s1600/Result.png\" imageanchor=\"1\" style=\"margin-left: auto; margin-right: auto;\"><img border=\"0\" height=\"226\" src=\"http://2.bp.blogspot.com/-ay4Wxg-NI7U/T0TZHzOqR7I/AAAAAAAAACA/gAzM1R_UQdo/s400/Result.png\" width=\"400\"></a></td></tr>\n<tr><td class=\"tr-caption\" style=\"text-align: center;\">Result of the command</td></tr>\n</tbody></table>\n<div style='font-family: \"Helvetica Neue\",Arial,Helvetica,sans-serif;'>\n<span style=\"font-size: small;\">Pipe operation is much more versatile. The one shown above is just a drop in the ocean.</span>\n</div>\n</div>\n<div class=\"MsoNormal\">\n<div style='font-family: \"Helvetica Neue\",Arial,Helvetica,sans-serif;'>\n<span style=\"font-size: small;\">I am relatively new to blogging. Your comments are valuable to improve the quality of the content.</span>\n</div>\n<br><span style='font-family: \"Helvetica Neue\",Arial,Helvetica,sans-serif; font-size: large;'><b><u>References:</u></b></span> <br><br><span style='font-family: \"Helvetica Neue\",Arial,Helvetica,sans-serif; font-size: small;'>http://en.wikipedia.org/wiki/Process_identifier</span>\n</div>\n</div>\n</div>\n<div style=\"clear: both;\"></div>"], ["created_at", Wed, 22 Feb 2012 13:27:41 UTC +00:00], ["post_date", Tue, 21 Feb 2012 13:46:00 UTC +00:00], ["title", "\nLinux Pipe operation\n"], ["updated_at", Wed, 22 Feb 2012 13:27:41 UTC +00:00], ["url", "http://abhishek4717.blogspot.in/2012/02/linux-pipe-operation.html"]]
+  [1m[35m (153.0ms)[0m  COMMIT
+Redirected to http://localhost:3000/blogs/3
+Completed 302 Found in 3830ms
+
+
+Started GET "/blogs/3" for 127.0.0.1 at Wed Feb 22 18:57:41 +0530 2012
+  Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mAdmin Load (0.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", "3"]]
+Rendered blogs/show.html.erb within layouts/blogs (7.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 212ms (Views: 148.0ms | ActiveRecord: 27.0ms)
+
+
+Started GET "/read_blogs" for 127.0.0.1 at Wed Feb 22 18:57:44 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` [0m
+  [1m[35mPost Load (22.0ms)[0m  SELECT `posts`.* FROM `posts` ORDER BY post_date DESC LIMIT 5 OFFSET 0
+  [1m[36mBlog Load (0.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM `posts` [0m
+Rendered read_blogs/index.html.erb within layouts/application (97.0ms)
+  [1m[35mAdmin Load (4.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered layouts/_navigation_links.html.erb (56.0ms)
+Completed 200 OK in 366ms (Views: 154.0ms | ActiveRecord: 98.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Wed Feb 22 18:58:03 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered blogs/_form.html.erb (15.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (23.0ms)
+Rendered layouts/_navigation_links.html.erb (2.0ms)
+Completed 200 OK in 142ms (Views: 81.0ms | ActiveRecord: 30.0ms)
+
+
+Started POST "/blogs" for 127.0.0.1 at Wed Feb 22 18:58:15 +0530 2012
+  Processing by BlogsController#create as HTML
+  Parameters: {"commit"=>"Create Blog", "blog"=>{"blogger_name"=>"Amruta Das", "blog_url"=>"http://amrutad.blogspot.in/"}, "authenticity_token"=>"1M0mpUVz5N4qFbffXspA4jUFnmHZPl+BIj7V8GhpwdQ=", "utf8"=>"✓"}
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  SELECT 1 FROM `blogs` WHERE `blogs`.`blog_url` = BINARY 'http://amrutad.blogspot.in/' LIMIT 1
+  [1m[36mSQL (4.0ms)[0m  [1mINSERT INTO `blogs` (`blog_title`, `blog_url`, `blogger_name`, `blogger_type`, `created_at`, `updated_at`) VALUES (?, ?, ?, ?, ?, ?)[0m  [["blog_title", nil], ["blog_url", "http://amrutad.blogspot.in/"], ["blogger_name", "Amruta Das"], ["blogger_type", nil], ["created_at", Wed, 22 Feb 2012 13:28:15 UTC +00:00], ["updated_at", Wed, 22 Feb 2012 13:28:15 UTC +00:00]]
+  [1m[35m (37.0ms)[0m  COMMIT
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  SELECT 1 FROM `blogs` WHERE (`blogs`.`blog_url` = BINARY 'http://amrutad.blogspot.in/' AND `blogs`.`id` != 4) LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mUPDATE `blogs` SET `blog_title` = '\nThe Path Afresh Trodden\n', `updated_at` = '2012-02-22 13:28:17' WHERE `blogs`.`id` = 4[0m
+  [1m[35m (31.0ms)[0m  COMMIT
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (4.0ms)[0m  INSERT INTO `posts` (`author`, `blog_id`, `content`, `created_at`, `post_date`, `title`, `updated_at`, `url`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["author", "\n\nAmruta\n\n"], ["blog_id", 4], ["content", "\n<div dir=\"ltr\" style=\"text-align: left;\" trbidi=\"on\">\nEvery now and then one hears that full stack programmers are the need of the hour. Being one of them, ie one who can code and maintain and entire system form the UI to the database and servers is my dream, and I took my first small step to achieve this big goal today.<br>\nHaving coded extensively on ruby on rails using the Netbeans tools , for around 2 years, today was my 'Day One' as I would like to call it, with the Black And Green Unix terminal Interface.<br>\nFrom amist loads of learning files , I picked up basic commands to practise and master. Being one who is used to clicking around to navigate through folders, it was an intersting task to practise 'cd' for navigating directories, the 'ls' commands to list files and 'rm' commands to delete , rather than a right click delete that I have been so used to.<br>\nI think today is my first day in the industry as a developer where I can on my finger tips count the number of times I clicked the mouse!! I guess that is the beauty of this language and is something which is different and definitely builds on your excitement to get involved and learn this further.<br>\nI must confess that reading up command line and implementing them are two very different and challenging scenario, as this is a strongly typed language.One tends to miss out on finer syntaxes like the position of '*' and '.' s.  etc<br>\nI personally found the cheatcode chit idea very intresting and helpful as after a brief practise when you get invovled in carring out a series of operations , you tend to get stuck up with syntactical errors. A cheatcode then helps you brush up your command syntax's. I have mentioned the link to the cheat sheet which I found helpful.<br><a href=\"http://cli.learncodethehardway.org/bash_cheat_sheet.pdf\">http://cli.learncodethehardway.org/bash_cheat_sheet.pdf</a> created by <a href=\"http://freeworld.posterous.com/65140847\">Raphael</a> <br><br>\nI would suggest that taking up a small quiz as a self analysis is a big confidence booster. I tired the following link.<br><br><a href=\"http://www.proprofs.com/quiz-school/story.php?title=linux-command-line-quiz-485\">http://www.proprofs.com/quiz-school/story.php?title=linux-command-line-quiz-485</a><br><br>\n</div>\n<div style=\"clear: both;\"></div>"], ["created_at", Wed, 22 Feb 2012 13:28:17 UTC +00:00], ["post_date", Tue, 21 Feb 2012 13:33:00 UTC +00:00], ["title", "\nDay One With The Black Screen\n"], ["updated_at", Wed, 22 Feb 2012 13:28:17 UTC +00:00], ["url", "http://amrutad.blogspot.in/2012/02/day-one-with-black-screen.html"]]
+  [1m[36m (72.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/blogs/4
+Completed 302 Found in 2736ms
+
+
+Started GET "/blogs/4" for 127.0.0.1 at Wed Feb 22 18:58:18 +0530 2012
+  Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", "4"]]
+Rendered blogs/show.html.erb within layouts/blogs (7.0ms)
+Rendered layouts/_navigation_links.html.erb (2.0ms)
+Completed 200 OK in 130ms (Views: 69.0ms | ActiveRecord: 30.0ms)
+
+
+Started GET "/read_blogs" for 127.0.0.1 at Wed Feb 22 18:58:34 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+  [1m[36mPost Load (5.0ms)[0m  [1mSELECT `posts`.* FROM `posts` ORDER BY post_date DESC LIMIT 5 OFFSET 0[0m
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", 3]]
+  [1m[36mBlog Load (0.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", 2]]
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM `posts` [0m
+Rendered read_blogs/index.html.erb within layouts/application (58.0ms)
+  [1m[35mAdmin Load (8.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered layouts/_navigation_links.html.erb (127.0ms)
+Completed 200 OK in 398ms (Views: 215.0ms | ActiveRecord: 68.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Wed Feb 22 18:59:00 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered blogs/_form.html.erb (15.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (23.0ms)
+Rendered layouts/_navigation_links.html.erb (2.0ms)
+Completed 200 OK in 145ms (Views: 82.0ms | ActiveRecord: 31.0ms)
+
+
+Started POST "/blogs" for 127.0.0.1 at Wed Feb 22 18:59:12 +0530 2012
+  Processing by BlogsController#create as HTML
+  Parameters: {"commit"=>"Create Blog", "blog"=>{"blogger_name"=>"Ashutosh Dikshit", "blog_url"=>"http://ashutoshdikshit.blogspot.in/"}, "authenticity_token"=>"1M0mpUVz5N4qFbffXspA4jUFnmHZPl+BIj7V8GhpwdQ=", "utf8"=>"✓"}
+  [1m[35mAdmin Load (0.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mSQL (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.0ms)[0m  SELECT 1 FROM `blogs` WHERE `blogs`.`blog_url` = BINARY 'http://ashutoshdikshit.blogspot.in/' LIMIT 1
+  [1m[36mSQL (3.0ms)[0m  [1mINSERT INTO `blogs` (`blog_title`, `blog_url`, `blogger_name`, `blogger_type`, `created_at`, `updated_at`) VALUES (?, ?, ?, ?, ?, ?)[0m  [["blog_title", nil], ["blog_url", "http://ashutoshdikshit.blogspot.in/"], ["blogger_name", "Ashutosh Dikshit"], ["blogger_type", nil], ["created_at", Wed, 22 Feb 2012 13:29:12 UTC +00:00], ["updated_at", Wed, 22 Feb 2012 13:29:12 UTC +00:00]]
+  [1m[35m (44.0ms)[0m  COMMIT
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  SELECT 1 FROM `blogs` WHERE (`blogs`.`blog_url` = BINARY 'http://ashutoshdikshit.blogspot.in/' AND `blogs`.`id` != 5) LIMIT 1
+  [1m[36m (1.0ms)[0m  [1mUPDATE `blogs` SET `updated_at` = '2012-02-22 13:29:15', `blog_title` = '\nMy Learnings\n' WHERE `blogs`.`id` = 5[0m
+  [1m[35m (38.0ms)[0m  COMMIT
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (5.0ms)[0m  INSERT INTO `posts` (`author`, `blog_id`, `content`, `created_at`, `post_date`, `title`, `updated_at`, `url`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["author", "\n\nAshutosh\n\n"], ["blog_id", 5], ["content", "\n<div dir=\"ltr\" style=\"text-align: left;\" trbidi=\"on\">\n\"Command line\" doesn't it sounds quite technical? it does and indeed it reminds us of that black screen where we would be working more on the keyboard than a typical GUI where every thing is just a click away. Well to be candid about this, yes I also had the same experience when i thought about working on UNIX but after reading and working about it over Internet and few books i realized that its not at all what i always thought of. In fact this is something which will make me a better programmer and would make me competent enough when it comes to work in a environment where Command line is the only way to interact and get our jobs done.<br><br><br>\nI had a look about why one should work on command line and here is what i conclude at:<br><br>\n1) we have a better control of our file system and lot of file operations can be done quite easily in command<br>\n    line. For example copying a file just needs a single command line to be written.<br>\n2) A command line enables a user to easily script up a command to execute/perform a task.<br>\n3)Though it looks a bit dull and not as attractive which a Full Fledged UI will look but over a period of time <br>\n   burning our fingers over the console will surely make us a better programmer.<br>\n4)Using a command line will not use much of the CPU Usage and thus increases the system performance.<br><br>\nTo start up with, I had a look to all of the basic UNIX commands ranging from mkdir,cp,ls,pwd and many more which you can find easily over Internet.But what i feel is reading is not the only option that should be done, One should practice them as many times as we can or we reach a stage where all these basic commands are on our fingertips. <br>\nFew commands which interested me are listed below with what they are used for:<br>\n1)PUSHD<br>\n2)POPD<br>\npushd and popd works on the concept of a stack and we can cd into directories using pushd, which adds the new directory on to the stack, and return to previously visited directories using popd.<br><br>\n3)GREP<br>\nIt searches the input files for lines containing a match to a given pattern list. When it finds a match in a line, it copies the line to standard output  or whatever other sort of output wen have requested with options.<br><br>\nDifference between GREP and FIND:<br><br>\nGrep is used for searching text patterns within a file which supports regular expression.Fgrep is used to find string in an expression.<br>\nFind is a file locater.It is used to search certain files or directories.<br><br>\n3)Env<br>\nIts gives us the list of variables of unix environment.<br><br>\n4)Head<br>\nIt by default prints the first 10 line of the file which we want to print.<br>\nDefault: Head MyFile.txt----- will give the first 10 lines of MyFile.txt<br>\nHead -25 MyFile.txt-----will give the first 25 Lines of Myfile.txt<br>\n5)Tail<br>\nIt by default prints the last 10 line of the file which we want to print.<br>\nDefault: Tail MyFile.txt----- will give the last 10 lines of MyFile.txt<br>\nTail -25 MyFile.txt-----will give the last 25 Lines of Myfile.txt<br><br>\nWhile i was searching about few commands i came across an on-line quiz that really helped me to understand and learn new commands, and i thought of sharing with you all<br><br><a href=\"http://www.ch.embnet.org/CoursEMBnet/Exercises/Quiz/quix1.html\">http://www.ch.embnet.org/CoursEMBnet/Exercises/Quiz/quix1.html</a><br><br>\nAll the best , Happy Learning.</div>\n<div style=\"clear: both;\"></div>"], ["created_at", Wed, 22 Feb 2012 13:29:15 UTC +00:00], ["post_date", Tue, 21 Feb 2012 13:50:00 UTC +00:00], ["title", "\nGet started with Command line\n"], ["updated_at", Wed, 22 Feb 2012 13:29:15 UTC +00:00], ["url", "http://ashutoshdikshit.blogspot.in/2012/02/get-started-with-command-line.html"]]
+  [1m[36m (30.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/blogs/5
+Completed 302 Found in 2607ms
+
+
+Started GET "/blogs/5" for 127.0.0.1 at Wed Feb 22 18:59:15 +0530 2012
+  Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mBlog Load (0.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", "5"]]
+Rendered blogs/show.html.erb within layouts/blogs (8.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 137ms (Views: 76.0ms | ActiveRecord: 28.0ms)
+
+
+Started GET "/read_blogs" for 127.0.0.1 at Wed Feb 22 18:59:17 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+  [1m[36mPost Load (3.0ms)[0m  [1mSELECT `posts`.* FROM `posts` ORDER BY post_date DESC LIMIT 5 OFFSET 0[0m
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", 5]]
+  [1m[36mBlog Load (0.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", 4]]
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM `posts` 
+Rendered read_blogs/index.html.erb within layouts/application (64.0ms)
+  [1m[36mAdmin Load (4.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered layouts/_navigation_links.html.erb (56.0ms)
+Completed 200 OK in 334ms (Views: 156.0ms | ActiveRecord: 61.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Wed Feb 22 18:59:31 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[35mAdmin Load (0.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered blogs/_form.html.erb (14.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (23.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 141ms (Views: 80.0ms | ActiveRecord: 29.0ms)
+
+
+Started POST "/blogs" for 127.0.0.1 at Wed Feb 22 18:59:43 +0530 2012
+  Processing by BlogsController#create as HTML
+  Parameters: {"commit"=>"Create Blog", "blog"=>{"blogger_name"=>"Debolina D ", "blog_url"=>"http://fullstackdeveloper.blogspot.in/"}, "authenticity_token"=>"1M0mpUVz5N4qFbffXspA4jUFnmHZPl+BIj7V8GhpwdQ=", "utf8"=>"✓"}
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mSELECT 1 FROM `blogs` WHERE `blogs`.`blog_url` = BINARY 'http://fullstackdeveloper.blogspot.in/' LIMIT 1[0m
+  [1m[35mSQL (3.0ms)[0m  INSERT INTO `blogs` (`blog_title`, `blog_url`, `blogger_name`, `blogger_type`, `created_at`, `updated_at`) VALUES (?, ?, ?, ?, ?, ?)  [["blog_title", nil], ["blog_url", "http://fullstackdeveloper.blogspot.in/"], ["blogger_name", "Debolina D "], ["blogger_type", nil], ["created_at", Wed, 22 Feb 2012 13:29:43 UTC +00:00], ["updated_at", Wed, 22 Feb 2012 13:29:43 UTC +00:00]]
+  [1m[36m (29.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (0.0ms)[0m  BEGIN
+  [1m[36m (1.0ms)[0m  [1mSELECT 1 FROM `blogs` WHERE (`blogs`.`blog_url` = BINARY 'http://fullstackdeveloper.blogspot.in/' AND `blogs`.`id` != 6) LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  UPDATE `blogs` SET `updated_at` = '2012-02-22 13:29:45', `blog_title` = '\nFullStackDeveloper\n' WHERE `blogs`.`id` = 6
+  [1m[36m (30.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (1.0ms)[0m  BEGIN
+  [1m[36mSQL (4.0ms)[0m  [1mINSERT INTO `posts` (`author`, `blog_id`, `content`, `created_at`, `post_date`, `title`, `updated_at`, `url`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["author", "\n\nDebolina D\n\n"], ["blog_id", 6], ["content", "\n<div dir=\"ltr\" style=\"text-align: left;\" trbidi=\"on\">\n<div class=\"separator\" style=\"clear: both; text-align: center;\">\n</div>\n<br><div class=\"separator\" style=\"clear: both; text-align: center;\">\n</div>\n<br><div class=\"MsoNormal\">\nImagine a scenario that you need to go back to the directory\nyou had started with, somewhere if the path could be stored and used as and\nwhen required.</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"separator\" style=\"clear: both; text-align: center;\">\n<a href=\"http://1.bp.blogspot.com/-oUZwCVT_oIw/T0OjU7Sl2UI/AAAAAAAAACQ/aUR45LDfEHU/s1600/windows-7-explorer_7.png\" imageanchor=\"1\" style=\"clear: left; float: left; margin-bottom: 1em; margin-right: 1em;\"><img border=\"0\" height=\"129\" src=\"http://1.bp.blogspot.com/-oUZwCVT_oIw/T0OjU7Sl2UI/AAAAAAAAACQ/aUR45LDfEHU/s200/windows-7-explorer_7.png\" width=\"200\"></a>\n</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\nWith a windows GUI one needs to click on the Back button\nagain and again. </div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\nThough simple it is time consuming.</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\nTry the “Powershell” in windows . If you cannot find it use\nthe search option.</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\nUsing ‘pushd’ and ‘popd’ one can easily sort out the above\nmentioned scenario.</div>\n<div class=\"MsoNormal\">\nEven with the Linux terminal the same command works.</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\nLet me demonstrate the same with an example.</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\n</div>\n<div class=\"separator\" style=\"clear: both; text-align: center;\">\n<a href=\"http://3.bp.blogspot.com/-ht332IDgy8M/T0OgtKtVtmI/AAAAAAAAABg/xhvwC1o_bvc/s1600/eg1.jpg\" imageanchor=\"1\" style=\"margin-left: 1em; margin-right: 1em;\"><img border=\"0\" height=\"251\" src=\"http://3.bp.blogspot.com/-ht332IDgy8M/T0OgtKtVtmI/AAAAAAAAABg/xhvwC1o_bvc/s400/eg1.jpg\" width=\"400\"></a>\n</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\n<br><b>Consider the list of commands in the screen above:</b><br><br><b>ls –l</b> lists the no of file available and I use <b>pushd </b>to push\nthe folder ‘<b>debolina</b>’ into it.</div>\n<div class=\"MsoNormal\">\nThen I perform a cat operation. Now if I use <b>popd </b>I can go\nback to my previous working directory.</div>\n<div class=\"MsoNormal\">\nThis actually works like one of the most common data structure- <b>Stack</b>.</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"separator\" style=\"clear: both; text-align: center;\">\n<a href=\"http://1.bp.blogspot.com/-WeLCMJkovUM/T0OiPbvGHWI/AAAAAAAAABo/LyjDnhODie4/s1600/200px-Data_stack_svg.png\" imageanchor=\"1\" style=\"clear: right; float: right; margin-bottom: 1em; margin-left: 1em;\"><img border=\"0\" src=\"http://1.bp.blogspot.com/-WeLCMJkovUM/T0OiPbvGHWI/AAAAAAAAABo/LyjDnhODie4/s1600/200px-Data_stack_svg.png\"></a>\n</div>\n<div class=\"MsoNormal\">\n<br>\nIf I speak about Stack, the first thing that comes to my\nmind is <b>LIFO</b>: <i>Last in First Out.</i>\n</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\n A stack is actually an abstract data type and a linear data structure\nand is characterized by two basic operations push and pop.</div>\n<div class=\"separator\" style=\"clear: both; text-align: center;\">\n</div>\n<br><div class=\"separator\" style=\"clear: both; text-align: center;\">\n<a href=\"http://1.bp.blogspot.com/-ATnFcpBNKug/T0OisMj2LcI/AAAAAAAAACI/eNXuZVKtOXw/s1600/401207.jpg\" imageanchor=\"1\" style=\"clear: left; float: left; margin-bottom: 1em; margin-right: 1em;\"><img border=\"0\" src=\"http://1.bp.blogspot.com/-ATnFcpBNKug/T0OisMj2LcI/AAAAAAAAACI/eNXuZVKtOXw/s1600/401207.jpg\"></a>\n</div>\n<div class=\"MsoNormal\">\n<br>\nPush symbolizes adding a new element to the existing set or initialing\na new stack if it is empty and pop means retrieving the last element from the\nstack or nothing if the stack is empty. </div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\n<br>\nSomeway it is more like a stack of plates in a canteen, where\neach plate is stored above the other and if one tries to remove it then one\nneeds to pullout the one at the top.<br><br><br>\n</div>\n</div>\n<div style=\"clear: both;\"></div>"], ["created_at", Wed, 22 Feb 2012 13:29:46 UTC +00:00], ["post_date", Tue, 21 Feb 2012 14:01:00 UTC +00:00], ["title", "\nShortcuts:  Moving in and out of directories.\n"], ["updated_at", Wed, 22 Feb 2012 13:29:46 UTC +00:00], ["url", "http://fullstackdeveloper.blogspot.in/2012/02/shortcuts-moving-in-and-out-of.html"]]
+  [1m[35m (26.0ms)[0m  COMMIT
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.0ms)[0m  SELECT 1 FROM `blogs` WHERE (`blogs`.`blog_url` = BINARY 'http://fullstackdeveloper.blogspot.in/' AND `blogs`.`id` != 6) LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (0.0ms)[0m  BEGIN
+  [1m[36mSQL (38.0ms)[0m  [1mINSERT INTO `posts` (`author`, `blog_id`, `content`, `created_at`, `post_date`, `title`, `updated_at`, `url`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["author", "\n\nDebolina D\n\n"], ["blog_id", 6], ["content", "\n<div dir=\"ltr\" style=\"text-align: left;\" trbidi=\"on\">\n<div style=\"font-family: Arial,Helvetica,sans-serif;\">\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\nAm sure the name “Full stack developer” surprises you.</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\nI heard about it may be a day back and was amazed. I mean is\nit not against what we have been convinced throughout our life. Learn one thing,\nspecialize and do the same repetitive things.</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\nI liked the way, <i><span style=\"color: windowtext; text-decoration: none;\">Carlos Bueno</span></i>,\nan engineer at Facebook spoke about FullStack Developers, in his blog <a href=\"http://www.facebook.com/note.php?note_id=461505383919\">The Full Stack,\nPart I</a> . He said,</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<br>\n</div>\n<div class=\"separator\" style=\"clear: both; font-family: Arial,Helvetica,sans-serif; text-align: center;\">\n<a href=\"http://2.bp.blogspot.com/-IlcIPEpDR4o/T0OAWVmDmbI/AAAAAAAAABA/tQI9tMltozc/s1600/Stack_4.jpg\" imageanchor=\"1\" style=\"clear: right; float: right; margin-bottom: 1em; margin-left: 1em;\"><img border=\"0\" height=\"200\" src=\"http://2.bp.blogspot.com/-IlcIPEpDR4o/T0OAWVmDmbI/AAAAAAAAABA/tQI9tMltozc/s200/Stack_4.jpg\" width=\"130\"></a>\n</div>\n<blockquote class=\"tr_bq\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<div class=\"MsoNormal\">\n<span style=\"font-size: small;\"><i>A\n\"<span style=\"color: windowtext; text-decoration: none;\">full-stack\nprogrammer</span>\" is a generalist, someone who can create a\nnon-trivial application by themselves. People who develop broad skills also tend\nto develop a good mental model of how different layers of a system behave. This\nturns out to be especially valuable for performance &amp; optimization\nwork. No one can know everything about everything, but you should be able\nto visualize what happens up and down the stack as an application does its\nthing. An application is shaped by the requirements of its data, and\nperformance is shaped by how quickly hardware can throw data around.</i></span>\n</div>\n</blockquote>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif; text-align: left;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif; text-align: left;\">\n<a href=\"http://1.bp.blogspot.com/-DR8YcyV27Yo/T0OCOlxzoAI/AAAAAAAAABY/hfzaJQL2kS8/s1600/goal-blocks-image-sm1.jpg\" imageanchor=\"1\" style=\"clear: left; float: left; margin-bottom: 1em; margin-right: 1em;\"><img border=\"0\" src=\"http://1.bp.blogspot.com/-DR8YcyV27Yo/T0OCOlxzoAI/AAAAAAAAABY/hfzaJQL2kS8/s1600/goal-blocks-image-sm1.jpg\"></a>Having said that all, I plan to do loads of things.</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<i> Firstly, learning things it requires for a complete web\ndeveloper and use this blog to help me remember the knowledge I gathered.</i>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<i>Secondly, will try innovating new things, which can be used\nnot only for learning but also for real life scenarios</i>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<i><span style=\"background: none repeat scroll 0% 0% black; border: 1pt none black; color: black; font-size: 0pt; padding: 0in;\"> </span></i>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\nOf course am sure this blog will also help other to learn\nand of course innovate. </div>\n</div>\n<div style=\"clear: both;\"></div>"], ["created_at", Wed, 22 Feb 2012 13:29:46 UTC +00:00], ["post_date", Tue, 21 Feb 2012 11:40:00 UTC +00:00], ["title", "\nThe Begining......\n"], ["updated_at", Wed, 22 Feb 2012 13:29:46 UTC +00:00], ["url", "http://fullstackdeveloper.blogspot.in/2012/02/begining.html"]]
+  [1m[35m (73.0ms)[0m  COMMIT
+Redirected to http://localhost:3000/blogs/6
+Completed 302 Found in 2626ms
+
+
+Started GET "/blogs/6" for 127.0.0.1 at Wed Feb 22 18:59:46 +0530 2012
+  Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mAdmin Load (0.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", "6"]]
+Rendered blogs/show.html.erb within layouts/blogs (7.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 134ms (Views: 70.0ms | ActiveRecord: 29.0ms)
+
+
+Started GET "/read_blogs" for 127.0.0.1 at Wed Feb 22 18:59:47 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` [0m
+  [1m[35mPost Load (1.0ms)[0m  SELECT `posts`.* FROM `posts` ORDER BY post_date DESC LIMIT 5 OFFSET 0
+  [1m[36mBlog Load (0.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", 5]]
+  [1m[36mBlog Load (0.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", 4]]
+  [1m[36mBlog Load (0.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM `posts` 
+Rendered read_blogs/index.html.erb within layouts/application (215.0ms)
+  [1m[36mAdmin Load (8.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered layouts/_navigation_links.html.erb (56.0ms)
+Completed 200 OK in 483ms (Views: 312.0ms | ActiveRecord: 57.0ms)
+
+
+Started GET "/read_blogs" for 127.0.0.1 at Wed Feb 22 19:00:25 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+  [1m[36mPost Load (5.0ms)[0m  [1mSELECT `posts`.* FROM `posts` ORDER BY post_date DESC LIMIT 5 OFFSET 0[0m
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", 6]]
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", 3]]
+  [1m[36mBlog Load (0.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM `posts` [0m
+Rendered read_blogs/index.html.erb within layouts/application (171.0ms)
+  [1m[35mAdmin Load (3.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered layouts/_navigation_links.html.erb (53.0ms)
+Completed 200 OK in 426ms (Views: 250.0ms | ActiveRecord: 66.0ms)
+
+
+Started GET "/read_blogs" for 127.0.0.1 at Wed Feb 22 19:00:49 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` [0m
+  [1m[35mPost Load (5.0ms)[0m  SELECT `posts`.* FROM `posts` ORDER BY post_date DESC LIMIT 5 OFFSET 0
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", 5]]
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", 4]]
+  [1m[36mBlog Load (0.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM `posts` 
+Rendered read_blogs/index.html.erb within layouts/application (170.0ms)
+  [1m[36mAdmin Load (7.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered layouts/_navigation_links.html.erb (53.0ms)
+Completed 200 OK in 436ms (Views: 256.0ms | ActiveRecord: 66.0ms)
+
+
+Started GET "/read_blogs" for 127.0.0.1 at Wed Feb 22 19:05:02 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+  [1m[36mPost Load (5.0ms)[0m  [1mSELECT `posts`.* FROM `posts` ORDER BY post_date DESC LIMIT 5 OFFSET 0[0m
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", 6]]
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", 3]]
+  [1m[36mBlog Load (0.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM `posts` [0m
+Rendered read_blogs/index.html.erb within layouts/application (102.0ms)
+  [1m[35mAdmin Load (3.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered layouts/_navigation_links.html.erb (52.0ms)
+Completed 200 OK in 423ms (Views: 251.0ms | ActiveRecord: 63.0ms)
+
+
+Started GET "/read_blogs" for 127.0.0.1 at Wed Feb 22 19:10:49 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` [0m
+  [1m[35mPost Load (5.0ms)[0m  SELECT `posts`.* FROM `posts` ORDER BY post_date DESC LIMIT 5 OFFSET 0
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", 5]]
+  [1m[36mBlog Load (0.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", 4]]
+  [1m[36mBlog Load (0.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM `posts` 
+Rendered read_blogs/index.html.erb within layouts/application (105.0ms)
+  [1m[36mAdmin Load (9.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered layouts/_navigation_links.html.erb (36.0ms)
+Completed 200 OK in 349ms (Views: 175.0ms | ActiveRecord: 67.0ms)
+
+
+Started GET "/read_blogs/home" for 127.0.0.1 at Wed Feb 22 19:11:03 +0530 2012
+
+AbstractController::ActionNotFound (The action 'show' could not be found for ReadBlogsController):
+  
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/unknown_action.erb within rescues/layout (0.0ms)
+
+
+Started GET "/read_blogs/home" for 127.0.0.1 at Wed Feb 22 19:12:03 +0530 2012
+
+AbstractController::ActionNotFound (The action 'show' could not be found for ReadBlogsController):
+  
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/unknown_action.erb within rescues/layout (0.0ms)
+
+
+Started GET "/read_blogs/home" for 127.0.0.1 at Wed Feb 22 19:14:40 +0530 2012
+
+AbstractController::ActionNotFound (The action 'show' could not be found for ReadBlogsController):
+  
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/unknown_action.erb within rescues/layout (115.0ms)
+
+
+Started GET "/read_blogs/home" for 127.0.0.1 at Wed Feb 22 19:19:24 +0530 2012
+  Processing by ReadBlogsController#home as HTML
+Rendered read_blogs/home.html.erb within layouts/application (108.0ms)
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered layouts/_navigation_links.html.erb (1093.1ms)
+Completed 200 OK in 1900ms (Views: 1872.2ms | ActiveRecord: 27.0ms)
+
+
+Started GET "/read_blogs/home" for 127.0.0.1 at Wed Feb 22 19:20:48 +0530 2012
+  Processing by ReadBlogsController#home as HTML
+Rendered read_blogs/home.html.erb within layouts/read_blogs (0.0ms)
+  [1m[35mAdmin Load (0.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered layouts/_navigation_links.html.erb (56.0ms)
+Completed 200 OK in 119ms (Views: 95.0ms | ActiveRecord: 24.0ms)
+
+
+Started GET "/read_blogs/home" for 127.0.0.1 at Wed Feb 22 19:21:06 +0530 2012
+  Processing by ReadBlogsController#home as HTML
+Rendered read_blogs/home.html.erb within layouts/read_blogs (0.0ms)
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered layouts/_navigation_links.html.erb (111.0ms)
+Completed 200 OK in 177ms (Views: 158.0ms | ActiveRecord: 19.0ms)
+
+
+Started GET "/blogs" for 127.0.0.1 at Wed Feb 22 19:21:25 +0530 2012
+  Processing by BlogsController#index as HTML
+  [1m[35mAdmin Load (9.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` [0m
+Rendered blogs/index.html.erb within layouts/blogs (19.0ms)
+Rendered layouts/_navigation_links.html.erb (2.0ms)
+Completed 200 OK in 152ms (Views: 88.0ms | ActiveRecord: 26.0ms)
+
+
+Started GET "/read_blogs" for 127.0.0.1 at Wed Feb 22 19:21:32 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+  [1m[36mPost Load (1.0ms)[0m  [1mSELECT `posts`.* FROM `posts` ORDER BY post_date DESC LIMIT 5 OFFSET 0[0m
+  [1m[35mBlog Load (171.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", 6]]
+  [1m[36mBlog Load (0.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", 3]]
+  [1m[36mBlog Load (13.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM `posts` [0m
+Rendered read_blogs/index.html.erb within layouts/read_blogs (444.0ms)
+  [1m[35mAdmin Load (8.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered layouts/_navigation_links.html.erb (60.0ms)
+Completed 200 OK in 715ms (Views: 346.0ms | ActiveRecord: 246.0ms)
+
+
+Started GET "/read_blogs/home" for 127.0.0.1 at Wed Feb 22 19:21:38 +0530 2012
+  Processing by ReadBlogsController#home as HTML
+Rendered read_blogs/home.html.erb within layouts/read_blogs (0.0ms)
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered layouts/_navigation_links.html.erb (72.0ms)
+Completed 200 OK in 214ms (Views: 189.0ms | ActiveRecord: 24.0ms)
+
+
+Started GET "/read_blogs/home" for 127.0.0.1 at Wed Feb 22 19:22:20 +0530 2012
+  Processing by ReadBlogsController#home as HTML
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+Rendered read_blogs/home.html.erb within layouts/read_blogs (0.0ms)
+  [1m[36mAdmin Load (8.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered layouts/_navigation_links.html.erb (54.0ms)
+Completed 200 OK in 235ms (Views: 98.0ms | ActiveRecord: 41.0ms)
+
+
+Started GET "/read_blogs/home" for 127.0.0.1 at Wed Feb 22 19:24:19 +0530 2012
+  Processing by ReadBlogsController#home as HTML
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+Rendered read_blogs/home.html.erb within layouts/read_blogs (0.0ms)
+  [1m[36mAdmin Load (9.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered layouts/_navigation_links.html.erb (55.0ms)
+Completed 200 OK in 239ms (Views: 99.0ms | ActiveRecord: 42.0ms)
+
+
+Started GET "/read_blogs/" for 127.0.0.1 at Wed Feb 22 19:24:50 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+Rendered read_blogs/index.html.erb within layouts/read_blogs (7.0ms)
+  [1m[36mAdmin Load (8.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered layouts/_navigation_links.html.erb (53.0ms)
+Completed 200 OK in 254ms (Views: 100.0ms | ActiveRecord: 42.0ms)
+
+
+Started GET "/read_blogs/" for 127.0.0.1 at Wed Feb 22 19:27:33 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+Rendered read_blogs/index.html.erb within layouts/application (6.0ms)
+  [1m[36mAdmin Load (8.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered layouts/_navigation_links.html.erb (118.0ms)
+Completed 200 OK in 349ms (Views: 181.0ms | ActiveRecord: 60.0ms)
+
+
+Started GET "/read_blogs/" for 127.0.0.1 at Wed Feb 22 19:28:02 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+Rendered read_blogs/index.html.erb within layouts/application (5.0ms)
+  [1m[36mAdmin Load (8.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered layouts/_navigation_links.html.erb (116.0ms)
+Completed 200 OK in 328ms (Views: 176.0ms | ActiveRecord: 43.0ms)
+
+
+Started GET "/logout" for 127.0.0.1 at Wed Feb 22 19:28:13 +0530 2012
+  Processing by Devise::SessionsController#destroy as HTML
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mSQL (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 80ms
+
+
+Started GET "/" for 127.0.0.1 at Wed Feb 22 19:28:13 +0530 2012
+
+ActionController::RoutingError (No route matches [GET] "/"):
+  
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Wed Feb 22 19:28:21 +0530 2012
+  Processing by BlogsController#new as HTML
+Completed 401 Unauthorized in 1ms
+
+
+Started GET "/admins/login" for 127.0.0.1 at Wed Feb 22 19:28:22 +0530 2012
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (0.0ms)
+Rendered devise/sessions/new.html.erb within layouts/application (15.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 142ms (Views: 90.0ms | ActiveRecord: 21.0ms)
+
+
+Started POST "/admins/login" for 127.0.0.1 at Wed Feb 22 19:28:34 +0530 2012
+  Processing by Devise::SessionsController#create as HTML
+  Parameters: {"commit"=>"Sign in", "admin"=>{"remember_me"=>"0", "user_name"=>"amit.thawait@tcs.com", "password"=>"[FILTERED]"}, "authenticity_token"=>"0mWgBbfd5pcq3p30/0yqSwd92z2R9pPa5lP4X5aWqA8=", "utf8"=>"✓"}
+  [1m[36mAdmin Load (0.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`user_name` = 'amit.thawait@tcs.com' LIMIT 1[0m
+Completed 401 Unauthorized in 74ms
+  Processing by Devise::SessionsController#new as HTML
+  Parameters: {"commit"=>"Sign in", "admin"=>{"remember_me"=>"0", "user_name"=>"amit.thawait@tcs.com", "password"=>"[FILTERED]"}, "authenticity_token"=>"0mWgBbfd5pcq3p30/0yqSwd92z2R9pPa5lP4X5aWqA8=", "utf8"=>"✓"}
+WARNING: Can't mass-assign protected attributes: user_name
+Rendered devise/shared/_links.erb (0.0ms)
+Rendered devise/sessions/new.html.erb within layouts/application (15.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 238ms (Views: 92.0ms | ActiveRecord: 5.0ms)
+
+
+Started POST "/admins/login" for 127.0.0.1 at Wed Feb 22 19:28:43 +0530 2012
+  Processing by Devise::SessionsController#create as HTML
+  Parameters: {"commit"=>"Sign in", "admin"=>{"remember_me"=>"0", "user_name"=>"amit.thawait@tcs.com", "password"=>"[FILTERED]"}, "authenticity_token"=>"0mWgBbfd5pcq3p30/0yqSwd92z2R9pPa5lP4X5aWqA8=", "utf8"=>"✓"}
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`user_name` = 'amit.thawait@tcs.com' LIMIT 1
+Completed 401 Unauthorized in 40ms
+  Processing by Devise::SessionsController#new as HTML
+  Parameters: {"commit"=>"Sign in", "admin"=>{"remember_me"=>"0", "user_name"=>"amit.thawait@tcs.com", "password"=>"[FILTERED]"}, "authenticity_token"=>"0mWgBbfd5pcq3p30/0yqSwd92z2R9pPa5lP4X5aWqA8=", "utf8"=>"✓"}
+WARNING: Can't mass-assign protected attributes: user_name
+Rendered devise/shared/_links.erb (1.0ms)
+Rendered devise/sessions/new.html.erb within layouts/application (15.0ms)
+Rendered layouts/_navigation_links.html.erb (0.0ms)
+Completed 200 OK in 222ms (Views: 96.0ms | ActiveRecord: 4.0ms)
+
+
+Started POST "/admins/login" for 127.0.0.1 at Wed Feb 22 19:29:05 +0530 2012
+  Processing by Devise::SessionsController#create as HTML
+  Parameters: {"commit"=>"Sign in", "admin"=>{"remember_me"=>"0", "user_name"=>"amit.thawait@tcs.com", "password"=>"[FILTERED]"}, "authenticity_token"=>"0mWgBbfd5pcq3p30/0yqSwd92z2R9pPa5lP4X5aWqA8=", "utf8"=>"✓"}
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`user_name` = 'amit.thawait@tcs.com' LIMIT 1[0m
+Completed 401 Unauthorized in 42ms
+  Processing by Devise::SessionsController#new as HTML
+  Parameters: {"commit"=>"Sign in", "admin"=>{"remember_me"=>"0", "user_name"=>"amit.thawait@tcs.com", "password"=>"[FILTERED]"}, "authenticity_token"=>"0mWgBbfd5pcq3p30/0yqSwd92z2R9pPa5lP4X5aWqA8=", "utf8"=>"✓"}
+WARNING: Can't mass-assign protected attributes: user_name
+Rendered devise/shared/_links.erb (0.0ms)
+Rendered devise/sessions/new.html.erb within layouts/application (13.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 216ms (Views: 92.0ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/admins/sign_up" for 127.0.0.1 at Wed Feb 22 19:29:24 +0530 2012
+  Processing by Devise::RegistrationsController#new as HTML
+Rendered devise/shared/_links.erb (0.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/devise-1.5.3/app/views/devise/registrations/new.html.erb within layouts/application (36.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 156ms (Views: 119.0ms | ActiveRecord: 16.0ms)
+
+
+Started POST "/admins" for 127.0.0.1 at Wed Feb 22 19:29:45 +0530 2012
+  Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"commit"=>"Sign up", "admin"=>{"password_confirmation"=>"[FILTERED]", "password"=>"[FILTERED]", "email"=>"admin@admin.com"}, "authenticity_token"=>"0mWgBbfd5pcq3p30/0yqSwd92z2R9pPa5lP4X5aWqA8=", "utf8"=>"✓"}
+  [1m[35mSQL (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mSELECT 1 FROM `admins` WHERE `admins`.`email` = BINARY 'admin@admin.com' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK
+Rendered devise/shared/_links.erb (0.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/devise-1.5.3/app/views/devise/registrations/new.html.erb within layouts/application (17.0ms)
+Rendered layouts/_navigation_links.html.erb (0.0ms)
+Completed 200 OK in 531ms (Views: 106.0ms | ActiveRecord: 24.0ms)
+
+
+Started POST "/admins" for 127.0.0.1 at Wed Feb 22 19:29:56 +0530 2012
+  Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"commit"=>"Sign up", "admin"=>{"password_confirmation"=>"[FILTERED]", "password"=>"[FILTERED]", "email"=>"admin@admin.com"}, "authenticity_token"=>"0mWgBbfd5pcq3p30/0yqSwd92z2R9pPa5lP4X5aWqA8=", "utf8"=>"✓"}
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.0ms)[0m  SELECT 1 FROM `admins` WHERE `admins`.`email` = BINARY 'admin@admin.com' LIMIT 1
+  [1m[36mSQL (5.0ms)[0m  [1mINSERT INTO `admins` (`created_at`, `current_sign_in_at`, `current_sign_in_ip`, `email`, `encrypted_password`, `last_sign_in_at`, `last_sign_in_ip`, `remember_created_at`, `reset_password_sent_at`, `reset_password_token`, `sign_in_count`, `updated_at`, `user_name`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 22 Feb 2012 13:59:56 UTC +00:00], ["current_sign_in_at", nil], ["current_sign_in_ip", nil], ["email", "admin@admin.com"], ["encrypted_password", "$2a$10$s3Uwt.Tu3.7Em9m1XeR9qekY0TXiFigT3smB0LlyPlLSS/ZrjGf.i"], ["last_sign_in_at", nil], ["last_sign_in_ip", nil], ["remember_created_at", nil], ["reset_password_sent_at", nil], ["reset_password_token", nil], ["sign_in_count", 0], ["updated_at", Wed, 22 Feb 2012 13:59:56 UTC +00:00], ["user_name", nil]]
+  [1m[35m (34.0ms)[0m  COMMIT
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  UPDATE `admins` SET `current_sign_in_at` = '2012-02-22 13:59:56', `updated_at` = '2012-02-22 13:59:56', `sign_in_count` = 1, `last_sign_in_at` = '2012-02-22 13:59:56', `last_sign_in_ip` = '127.0.0.1', `current_sign_in_ip` = '127.0.0.1' WHERE `admins`.`id` = 2
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/blogs/new
+Completed 302 Found in 529ms
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Wed Feb 22 19:29:56 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 2 LIMIT 1
+Rendered blogs/_form.html.erb (17.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (27.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 150ms (Views: 88.0ms | ActiveRecord: 27.0ms)
+
+
+Started GET "/read_blogs" for 127.0.0.1 at Wed Feb 22 19:30:00 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` [0m
+Rendered read_blogs/index.html.erb within layouts/application (7.0ms)
+  [1m[35mAdmin Load (8.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 2 LIMIT 1
+Rendered layouts/_navigation_links.html.erb (59.0ms)
+Completed 200 OK in 360ms (Views: 195.0ms | ActiveRecord: 40.0ms)
+
+
+Started GET "/logout" for 127.0.0.1 at Wed Feb 22 19:30:04 +0530 2012
+  Processing by Devise::SessionsController#destroy as HTML
+  [1m[36mAdmin Load (0.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 2 LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 77ms
+
+
+Started GET "/" for 127.0.0.1 at Wed Feb 22 19:30:04 +0530 2012
+
+ActionController::RoutingError (No route matches [GET] "/"):
+  
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.0ms)

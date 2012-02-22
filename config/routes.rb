@@ -10,8 +10,17 @@ Amit::Application.routes.draw do
 
   resources :blogs
 
-  resources :read_blogs
-  root :to => "read_blogs#index"
+  resources :read_blogs do
+   collection do
+     get :home
+   end 
+  end
+   
+  #root :to => "read_blogs#index"
+  
+  
+  
+  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
