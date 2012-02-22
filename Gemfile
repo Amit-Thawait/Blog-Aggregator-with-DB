@@ -46,7 +46,7 @@ end
 
 gem 'heroku'
 
-gem 'bundler','1.1.rc.7'
+#gem 'bundler','1.1.rc.7'
 
 gem 'factory_girl'
 
