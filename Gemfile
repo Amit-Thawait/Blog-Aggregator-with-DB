@@ -11,7 +11,7 @@ group :development, :test do
   gem 'mysql','2.8.1'
 end
 group :production do
-#  gem 'pg'
+  gem 'pg'
 end
 
 gem 'json'
@@ -46,7 +46,7 @@ end
 
 gem 'heroku'
 
-#gem 'bundler','1.1.rc.7'
+gem 'bundler','1.1.rc.7'
 
 gem 'factory_girl'
 
