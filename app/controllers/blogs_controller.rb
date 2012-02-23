@@ -42,7 +42,7 @@ class BlogsController < ApplicationController
   # POST /blogs.json
   def create
     @blog = Blog.new(params[:blog])
-    @blog.git_url = "https://github.com/" << params[:blog][:git_url]
+    @blog.git_url = "https://github.com/" + params[:blog][:git_url]
     respond_to do |format|
       if @blog.save     
         urls1 = [ "http://patshaughnessy.net/","http://patshaughnessy.net"]
@@ -67,7 +67,7 @@ class BlogsController < ApplicationController
   # PUT /blogs/1.json
   def update
     @blog = Blog.find(params[:id])
-
+    @blog.git_url = "https://github.com/" + params[:blog][:git_url]
     respond_to do |format|
       if @blog.update_attributes(params[:blog])
         format.html { redirect_to @blog, :notice => 'Blog was successfully updated.' }
