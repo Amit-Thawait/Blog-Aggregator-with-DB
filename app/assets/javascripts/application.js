@@ -8,3 +8,6 @@
 //= require jquery_ujs
 //= require_tree .
 
+function copy_user_name(){
+   $('#admin_user_name').val($('#admin_email').val());		
+}
