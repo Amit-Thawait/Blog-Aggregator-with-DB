@@ -1,4 +1,4 @@
-o: ActiveSupport::Cache::Entry	:@compressedF:@value{"asset_paths["+$root/app/assets/stylesheets/style.css"	body"åd/* begin Page */
+o: ActiveSupport::Cache::Entry	:@value{"asset_paths["+$root/app/assets/stylesheets/style.css"	body"åd/* begin Page */
 /* Created by Artisteer v3.0.0.39952 */
 
 #art-main, table
@@ -1612,5 +1612,5 @@ pre,.MsoNormal{
 
 "content_type"text/css"
 class"BundledAsset"
-mtime"2012-02-21T20:09:33+05:30"_version"%46dde6621c301f4928e3b34efee9e3b5"id"%539c8e350d28880c928d0347bac72282"dependency_paths[{"hexdigest"%6dc38ddc88da41a4e40ea0e53181ef5d"
-mtimeu:	Time®€  ž"	path"+$root/app/assets/stylesheets/style.css"pathname"+$root/app/assets/stylesheets/style.css"logical_path"style.css:@created_atf1329915992.702934 üß:@expires_in0
+mtime"2012-02-23T14:43:37+05:30"_version"%1c9609bc58b1e77c196de29021583379"id"%fe56b8b581f11ed7229885a2985172fb"dependency_paths[{"hexdigest"%e3916c8357c73f444604b764529ba015"
+mtimeu:	Timeé€  P6"	path"+$root/app/assets/stylesheets/style.css"pathname"+$root/app/assets/stylesheets/style.css"logical_path"style.css:@created_atf1329993565.884975 £n:@expires_in0:@compressedF

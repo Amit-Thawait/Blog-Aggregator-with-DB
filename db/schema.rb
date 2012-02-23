@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120131082436) do
+ActiveRecord::Schema.define(:version => 20120223093024) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20120131082436) do
     t.datetime "updated_at"
     t.string   "blogger_type"
     t.string   "blog_title"
+    t.string   "git_url"
   end
 
   create_table "posts", :force => true do |t|

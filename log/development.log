@@ -882,3 +882,1057 @@ ActionController::RoutingError (No route matches [GET] "/"):
   
 
 Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at Thu Feb 23 14:46:31 +0530 2012
+
+Mysql::Error (Access denied for user 'root'@'localhost' (using password: YES)):
+  
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (53.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (299.0ms)
+  [1m[36m (669.0ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (123.0ms)[0m  SHOW KEYS FROM `schema_migrations`
+  [1m[36m (867.0ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35m (1.0ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+Migrating to CreateBlogs (20111229150234)
+  [1m[36m (206.0ms)[0m  [1mCREATE TABLE `blogs` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `blogger_name` varchar(255), `blog_url` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (125.0ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20111229150234')
+Migrating to DeviseCreateAdmins (20120127111227)
+  [1m[36m (100.0ms)[0m  [1mCREATE TABLE `admins` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(128) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (21.0ms)[0m  SHOW KEYS FROM `admins`
+  [1m[36m (320.0ms)[0m  [1mCREATE UNIQUE INDEX `index_admins_on_email` ON `admins` (`email`)[0m
+  [1m[35m (13.0ms)[0m  SHOW KEYS FROM `admins`
+  [1m[36m (411.0ms)[0m  [1mCREATE UNIQUE INDEX `index_admins_on_reset_password_token` ON `admins` (`reset_password_token`)[0m
+  [1m[35m (49.0ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20120127111227')
+Migrating to AddUsernameToAdmins (20120127122331)
+  [1m[36m (330.0ms)[0m  [1mALTER TABLE `admins` ADD `user_name` varchar(255)[0m
+  [1m[35m (24.0ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20120127122331')
+Migrating to CreatePosts (20120131081248)
+  [1m[36m (121.0ms)[0m  [1mCREATE TABLE `posts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `url` varchar(255), `title` varchar(255), `content` text, `author` varchar(255), `post_date` datetime, `blog_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (24.0ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20120131081248')
+Migrating to AddBloggerTypeAndBlogTitleToBlogs (20120131082436)
+  [1m[36m (354.0ms)[0m  [1mALTER TABLE `blogs` ADD `blogger_type` varchar(255)[0m
+  [1m[35m (341.0ms)[0m  ALTER TABLE `blogs` ADD `blog_title` varchar(255)
+  [1m[36m (23.0ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20120131082436')[0m
+  [1m[35m (0.0ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+  [1m[36m (1.0ms)[0m  [1mSHOW KEYS FROM `admins`[0m
+  [1m[35m (1.0ms)[0m  SHOW KEYS FROM `blogs`
+  [1m[36m (1.0ms)[0m  [1mSHOW KEYS FROM `posts`[0m
+
+
+Started GET "/" for 127.0.0.1 at Thu Feb 23 14:53:28 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[36mBlog Load (0.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` [0m
+Rendered read_blogs/index.html.erb within layouts/application (82.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 1959ms (Views: 893.1ms | ActiveRecord: 67.0ms)
+
+
+Started GET "/admins/sign_up" for 127.0.0.1 at Thu Feb 23 14:53:47 +0530 2012
+  Processing by Devise::RegistrationsController#new as HTML
+Rendered devise/shared/_links.erb (1.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/devise-1.5.3/app/views/devise/registrations/new.html.erb within layouts/application (30.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 182ms (Views: 144.0ms | ActiveRecord: 20.0ms)
+
+
+Started POST "/admins" for 127.0.0.1 at Thu Feb 23 14:54:46 +0530 2012
+  Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"commit"=>"Sign up", "admin"=>{"password_confirmation"=>"[FILTERED]", "password"=>"[FILTERED]", "email"=>"r@r.com"}, "authenticity_token"=>"oTcVNH7rg1Abj9V3MEBPDFJWnAVKLkZFHklr9SAGbv0=", "utf8"=>"✓"}
+  [1m[35mSQL (1.0ms)[0m  BEGIN
+  [1m[36m (63.0ms)[0m  [1mSELECT 1 FROM `admins` WHERE `admins`.`email` = BINARY 'r@r.com' LIMIT 1[0m
+  [1m[35mSQL (101.0ms)[0m  INSERT INTO `admins` (`created_at`, `current_sign_in_at`, `current_sign_in_ip`, `email`, `encrypted_password`, `last_sign_in_at`, `last_sign_in_ip`, `remember_created_at`, `reset_password_sent_at`, `reset_password_token`, `sign_in_count`, `updated_at`, `user_name`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Thu, 23 Feb 2012 09:24:47 UTC +00:00], ["current_sign_in_at", nil], ["current_sign_in_ip", nil], ["email", "r@r.com"], ["encrypted_password", "$2a$10$IoPLK/WFHQkaT/b71.B8F..qIw3qO5arc2H6keSrXCiU4cdZDm8AS"], ["last_sign_in_at", nil], ["last_sign_in_ip", nil], ["remember_created_at", nil], ["reset_password_sent_at", nil], ["reset_password_token", nil], ["sign_in_count", 0], ["updated_at", Thu, 23 Feb 2012 09:24:47 UTC +00:00], ["user_name", nil]]
+  [1m[36m (70.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (0.0ms)[0m  BEGIN
+  [1m[36m (55.0ms)[0m  [1mUPDATE `admins` SET `current_sign_in_at` = '2012-02-23 09:24:47', `last_sign_in_ip` = '127.0.0.1', `sign_in_count` = 1, `updated_at` = '2012-02-23 09:24:47', `current_sign_in_ip` = '127.0.0.1', `last_sign_in_at` = '2012-02-23 09:24:47' WHERE `admins`.`id` = 1[0m
+  [1m[35m (25.0ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 1121ms
+
+
+Started GET "/" for 127.0.0.1 at Thu Feb 23 14:54:48 +0530 2012
+  [1m[36mAdmin Load (67.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  Processing by BlogsController#index as HTML
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+Rendered blogs/index.html.erb within layouts/blogs (1.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 62ms (Views: 60.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 14:54:51 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[36mAdmin Load (0.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered blogs/_form.html.erb (76.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (82.0ms)
+Rendered layouts/_navigation_links.html.erb (2.0ms)
+Completed 200 OK in 193ms (Views: 142.0ms | ActiveRecord: 21.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 14:55:56 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered blogs/_form.html.erb (18.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (23.0ms)
+Completed 500 Internal Server Error in 85ms
+
+ActionView::Template::Error (undefined method `git_url' for #<Blog:0x6706650>):
+    21:   </div>
+    22:  <div class="field">
+    23:     <%= f.label :git_url %><br />
+    24:     <%= f.text_field :git_url %>
+    25:  </div>
+    26:   <div class="actions">
+    27:     <%= f.submit %>
+  app/views/blogs/_form.html.erb:24:in `_app_views_blogs__form_html_erb__433121570_53942664'
+  app/views/blogs/_form.html.erb:1:in `_app_views_blogs__form_html_erb__433121570_53942664'
+  app/views/blogs/new.html.erb:3:in `_app_views_blogs_new_html_erb__349730076_52620372'
+  app/controllers/blogs_controller.rb:30:in `new'
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (17.0ms)
+  [1m[36m (0.0ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to CreateBlogs (20111229150234)
+Migrating to DeviseCreateAdmins (20120127111227)
+Migrating to AddUsernameToAdmins (20120127122331)
+Migrating to CreatePosts (20120131081248)
+Migrating to AddBloggerTypeAndBlogTitleToBlogs (20120131082436)
+Migrating to AddGiturlToBlogs (20120223093024)
+  [1m[35m (421.0ms)[0m  ALTER TABLE `blogs` ADD `git_url` varchar(255)
+  [1m[36m (35.0ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20120223093024')[0m
+  [1m[35m (0.0ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+  [1m[36m (2.0ms)[0m  [1mSHOW KEYS FROM `admins`[0m
+  [1m[35m (2.0ms)[0m  SHOW KEYS FROM `blogs`
+  [1m[36m (1.0ms)[0m  [1mSHOW KEYS FROM `posts`[0m
+
+
+Started GET "/" for 127.0.0.1 at Thu Feb 23 15:07:00 +0530 2012
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  Processing by BlogsController#index as HTML
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+Rendered blogs/index.html.erb within layouts/blogs (93.0ms)
+Rendered layouts/_navigation_links.html.erb (2.0ms)
+Completed 200 OK in 608ms (Views: 605.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 15:07:12 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered blogs/_form.html.erb (17.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (23.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 145ms (Views: 94.0ms | ActiveRecord: 23.0ms)
+
+
+Started POST "/blogs" for 127.0.0.1 at Thu Feb 23 15:10:10 +0530 2012
+  Processing by BlogsController#create as HTML
+  Parameters: {"commit"=>"Create Blog", "blog"=>{"blogger_name"=>"Abhishek Bahuguna", "git_url"=>"https://github.com/abhishek-bahuguna", "blog_url"=>"http://abhishekbahuguna.blogspot.in/"}, "authenticity_token"=>"oTcVNH7rg1Abj9V3MEBPDFJWnAVKLkZFHklr9SAGbv0=", "utf8"=>"✓"}
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.0ms)[0m  SELECT 1 FROM `blogs` WHERE `blogs`.`blog_url` = BINARY 'http://abhishekbahuguna.blogspot.in/' LIMIT 1
+  [1m[36mSQL (42.0ms)[0m  [1mINSERT INTO `blogs` (`blog_title`, `blog_url`, `blogger_name`, `blogger_type`, `created_at`, `git_url`, `updated_at`) VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["blog_title", nil], ["blog_url", "http://abhishekbahuguna.blogspot.in/"], ["blogger_name", "Abhishek Bahuguna"], ["blogger_type", nil], ["created_at", Thu, 23 Feb 2012 09:40:11 UTC +00:00], ["git_url", "https://github.com/abhishek-bahuguna"], ["updated_at", Thu, 23 Feb 2012 09:40:11 UTC +00:00]]
+  [1m[35m (38.0ms)[0m  COMMIT
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (23.0ms)[0m  SELECT 1 FROM `blogs` WHERE (`blogs`.`blog_url` = BINARY 'http://abhishekbahuguna.blogspot.in/' AND `blogs`.`id` != 1) LIMIT 1
+  [1m[36m (1.0ms)[0m  [1mUPDATE `blogs` SET `blog_title` = '\nTech-Wise\n', `updated_at` = '2012-02-23 09:40:13' WHERE `blogs`.`id` = 1[0m
+  [1m[35m (36.0ms)[0m  COMMIT
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (28.0ms)[0m  INSERT INTO `posts` (`author`, `blog_id`, `content`, `created_at`, `post_date`, `title`, `updated_at`, `url`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["author", "\n\nAbhishek\n\n"], ["blog_id", 1], ["content", "\n<div dir=\"ltr\" style=\"text-align: left;\" trbidi=\"on\">\n<br>\nFor those who are still wondering, <b>CLI</b> is the Command Line Interface.<br><br><span style=\"color: #2f2f2f; font-family: Arial; font-size: x-small;\"><span style=\"color: #2f2f2f; font-family: Arial; font-size: x-small;\"><span style=\"color: #2f2f2f; font-family: Arial; font-size: x-small;\">You might be a bit amused with the weird title, but I found it appropriate to name<b> it</b> this way as this <b>is</b> the first time ever that I have tried out CLI.<br><br><u>Here are few of my observations:</u><br><br>\n1) For new users, it might take a while to understand the ease and power of CLI.<br><br>\n2) Once you are familiar with the commonly used commands, you can perform many operations much quicker than GUI.<br><br><ul style=\"text-align: left;\">\n<li>Eg. You can type in a single line command to move/copy a file to a folder 10 folders deep. Imagine Copying the file and then performing10 double clicks before you can paste it again !</li>\n<li>Another example would be to append the contents of a file into another by a single line command opposed to opening file &gt; copying &gt; opening another file &gt; pasting.</li>\n</ul>\n3) Operations which you can carry out with CLI are much faster compared to GUI. Consider searching a part of text in a folder having many text files.<br><br>\n4) It also provides an option to take the output of one command and use it as the input to another. How cool is that !<br><br>\n5) CLI uses much less resources compared to a GUI.<br><br><br><span style=\"color: #2f2f2f; font-family: Arial; font-size: x-small;\"><span style=\"color: #2f2f2f; font-family: Arial; font-size: x-small;\"><span style=\"color: #2f2f2f; font-family: Arial; font-size: x-small;\">I have not gone into the details of each and every command that you can use with CLI as there are a lots of such materials available on the internet.<br>\nHere are a few links that you can use to start with the command line.<br><br><a href=\"http://cli.learncodethehardway.org/book/\">http://cli.learncodethehardway.org/book/</a><br><br><a href=\"http://freeengineer.org/learnUNIXin10minutes.html\">http://freeengineer.org/learnUNIXin10minutes.html</a><br><br><a href=\"http://matt.might.net/articles/basic-unix/\">http://matt.might.net/articles/basic-unix/</a><br><div>\n<br>\n</div>\n</span></span></span></span></span></span>\n</div>\n<div style=\"clear: both;\"></div>"], ["created_at", Thu, 23 Feb 2012 09:40:13 UTC +00:00], ["post_date", Tue, 21 Feb 2012 12:52:00 UTC +00:00], ["title", "\nMy 'First date' with CLI\n"], ["updated_at", Thu, 23 Feb 2012 09:40:13 UTC +00:00], ["url", "http://abhishekbahuguna.blogspot.in/2012/02/my-first-date-with-cli.html"]]
+  [1m[36m (32.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/blogs/1
+Completed 302 Found in 2603ms
+
+
+Started GET "/blogs/1" for 127.0.0.1 at Thu Feb 23 15:10:13 +0530 2012
+  Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAdmin Load (7.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", "1"]]
+Rendered blogs/show.html.erb within layouts/blogs (7.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 125ms (Views: 68.0ms | ActiveRecord: 29.0ms)
+
+
+Started GET "/blogs" for 127.0.0.1 at Thu Feb 23 15:10:17 +0530 2012
+  Processing by BlogsController#index as HTML
+  [1m[35mAdmin Load (6.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` [0m
+Rendered blogs/index.html.erb within layouts/blogs (12.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 157ms (Views: 89.0ms | ActiveRecord: 29.0ms)
+
+
+Started GET "/read_blogs" for 127.0.0.1 at Thu Feb 23 15:12:46 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+Rendered read_blogs/index.html.erb within layouts/application (7.0ms)
+  [1m[36mAdmin Load (4.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered layouts/_navigation_links.html.erb (44.0ms)
+Completed 200 OK in 281ms (Views: 163.0ms | ActiveRecord: 34.0ms)
+
+
+Started GET "/read_blogs" for 127.0.0.1 at Thu Feb 23 15:13:37 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+Rendered read_blogs/index.html.erb within layouts/application (6.0ms)
+  [1m[36mAdmin Load (5.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered layouts/_navigation_links.html.erb (48.0ms)
+Completed 200 OK in 232ms (Views: 112.0ms | ActiveRecord: 33.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 15:16:16 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered blogs/_form.html.erb (15.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (34.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 139ms (Views: 90.0ms | ActiveRecord: 24.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 15:29:49 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+ERROR: compiling _app_views_blogs__form_html_erb__433121570_55054392 RAISED compile error
+D:/workspace/Blog-Aggregator-with-DB/app/views/blogs/_form.html.erb:25: syntax error, unexpected '=', expecting kEND
+');     :git_url = "https://github.com/" + :git_id 
+                  ^
+Function body:           def _app_views_blogs__form_html_erb__433121570_55054392(local_assigns, output_buffer)
+            _old_virtual_path, @virtual_path = @virtual_path, "blogs/_form";_old_output_buffer = @output_buffer;form = local_assigns[:form];;@output_buffer = output_buffer || ActionView::OutputBuffer.new;@output_buffer.append=  form_for(@blog) do |f| @output_buffer.safe_concat('
+');   if @blog.errors.any? 
+@output_buffer.safe_concat('    <div id="error_explanation">
+      <h2>');@output_buffer.append= ( pluralize(@blog.errors.count, "error") );@output_buffer.safe_concat(' prohibited this blog from being saved:</h2>
+
+      <ul>
+');       @blog.errors.full_messages.each do |msg| 
+@output_buffer.safe_concat('        <li>');@output_buffer.append= ( msg );@output_buffer.safe_concat('</li>
+');       end 
+@output_buffer.safe_concat('      </ul>
+    </div>
+');   end 
+@output_buffer.safe_concat('
+  <div class="field">
+    ');@output_buffer.append= ( f.label :blogger_name );@output_buffer.safe_concat('<br />
+    ');@output_buffer.append= ( f.text_field :blogger_name );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('  </div>
+  <div class="field">
+    ');@output_buffer.append= ( f.label :blog_url );@output_buffer.safe_concat('(Please Mention  http:// or https:// )<br />
+    ');@output_buffer.append= ( f.text_field :blog_url );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('  </div>
+ <div class="field">
+    ');@output_buffer.append= ( f.label :git_id );@output_buffer.safe_concat('<br />
+    ');@output_buffer.append= ( f.text_field :git_id );@output_buffer.safe_concat('
+');     :git_url = "https://github.com/" + :git_id 
+@output_buffer.safe_concat(' </div>
+  <div class="actions">
+    ');@output_buffer.append= ( f.submit );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('  </div>
+'); end 
+@output_buffer.to_s
+          ensure
+            @virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+Backtrace: D:/workspace/Blog-Aggregator-with-DB/app/views/blogs/_form.html.erb:34:in `compile'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/template.rb:217:in `compile!'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/template.rb:170:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications.rb:55:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/template.rb:169:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/partial_renderer.rb:256:in `render_partial'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/partial_renderer.rb:228:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/abstract_renderer.rb:33:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications.rb:53:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications.rb:53:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/abstract_renderer.rb:33:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/partial_renderer.rb:227:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/abstract_renderer.rb:22:in `wrap_formats'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/partial_renderer.rb:219:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/renderer.rb:41:in `render_partial'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/helpers/rendering_helper.rb:27:in `render'
+D:/workspace/Blog-Aggregator-with-DB/app/views/blogs/new.html.erb:3:in `_app_views_blogs_new_html_erb__349730076_54096996'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/template.rb:171:in `send'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/template.rb:171:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications.rb:55:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/template.rb:169:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/template_renderer.rb:40:in `render_template'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/abstract_renderer.rb:33:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications.rb:53:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications.rb:53:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/abstract_renderer.rb:33:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/template_renderer.rb:39:in `render_template'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/template_renderer.rb:47:in `render_with_layout'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/template_renderer.rb:38:in `render_template'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/template_renderer.rb:12:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/abstract_renderer.rb:22:in `wrap_formats'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/template_renderer.rb:9:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/renderer.rb:36:in `render_template'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/renderer.rb:17:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/abstract_controller/rendering.rb:120:in `_render_template'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/streaming.rb:250:in `_render_template'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/abstract_controller/rendering.rb:114:in `render_to_body'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/renderers.rb:30:in `render_to_body'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/compatibility.rb:43:in `render_to_body'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/abstract_controller/rendering.rb:99:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/rendering.rb:16:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/instrumentation.rb:40:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+C:/Ruby187/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/instrumentation.rb:40:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/instrumentation.rb:78:in `cleanup_view_runtime'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activerecord-3.1.3/lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/instrumentation.rb:39:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/mime_responds.rb:268:in `retrieve_response_from_mimes'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/mime_responds.rb:195:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/mime_responds.rb:195:in `respond_to'
+D:/workspace/Blog-Aggregator-with-DB/app/controllers/blogs_controller.rb:30:in `new'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/abstract_controller/base.rb:167:in `process_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/rendering.rb:10:in `process_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/abstract_controller/callbacks.rb:18:in `process_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/callbacks.rb:425:in `_run__384139393__process_action__943997142__callbacks'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/callbacks.rb:386:in `send'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/callbacks.rb:386:in `_run_process_action_callbacks'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/callbacks.rb:81:in `send'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/abstract_controller/callbacks.rb:17:in `process_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/rescue.rb:17:in `process_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications.rb:53:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications.rb:53:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/params_wrapper.rb:201:in `process_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activerecord-3.1.3/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/abstract_controller/base.rb:121:in `process'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/abstract_controller/rendering.rb:45:in `process'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal.rb:193:in `dispatch'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal.rb:236:in `action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/routing/route_set.rb:65:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/routing/route_set.rb:65:in `dispatch'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/routing/route_set.rb:29:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-mount-0.8.3/lib/rack/mount/route_set.rb:152:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-mount-0.8.3/lib/rack/mount/code_generation.rb:96:in `recognize'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-mount-0.8.3/lib/rack/mount/code_generation.rb:82:in `optimized_each'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-mount-0.8.3/lib/rack/mount/code_generation.rb:95:in `recognize'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-mount-0.8.3/lib/rack/mount/route_set.rb:141:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/routing/route_set.rb:532:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/warden-1.1.0/lib/warden/manager.rb:35:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/warden-1.1.0/lib/warden/manager.rb:34:in `catch'
+C:/Ruby187/lib/ruby/gems/1.8/gems/warden-1.1.0/lib/warden/manager.rb:34:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/etag.rb:23:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/conditionalget.rb:25:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/head.rb:14:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/flash.rb:247:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/session/abstract/id.rb:195:in `context'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/session/abstract/id.rb:190:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/cookies.rb:331:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activerecord-3.1.3/lib/active_record/query_cache.rb:64:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activerecord-3.1.3/lib/active_record/connection_adapters/abstract/connection_pool.rb:477:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/callbacks.rb:29:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/callbacks.rb:392:in `_run_call_callbacks'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/callbacks.rb:81:in `send'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/reloader.rb:68:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/sendfile.rb:101:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/railties-3.1.3/lib/rails/rack/logger.rb:13:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/methodoverride.rb:24:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/runtime.rb:17:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/lock.rb:15:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/static.rb:53:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/railties-3.1.3/lib/rails/engine.rb:456:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/content_length.rb:14:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/railties-3.1.3/lib/rails/rack/log_tailer.rb:14:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/handler/webrick.rb:59:in `service'
+C:/Ruby187/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+C:/Ruby187/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+C:/Ruby187/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+C:/Ruby187/lib/ruby/1.8/webrick/server.rb:162:in `start'
+C:/Ruby187/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+C:/Ruby187/lib/ruby/1.8/webrick/server.rb:95:in `start'
+C:/Ruby187/lib/ruby/1.8/webrick/server.rb:92:in `each'
+C:/Ruby187/lib/ruby/1.8/webrick/server.rb:92:in `start'
+C:/Ruby187/lib/ruby/1.8/webrick/server.rb:23:in `start'
+C:/Ruby187/lib/ruby/1.8/webrick/server.rb:82:in `start'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/handler/webrick.rb:13:in `run'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/server.rb:265:in `start'
+C:/Ruby187/lib/ruby/gems/1.8/gems/railties-3.1.3/lib/rails/commands/server.rb:70:in `start'
+C:/Ruby187/lib/ruby/gems/1.8/gems/railties-3.1.3/lib/rails/commands.rb:54
+C:/Ruby187/lib/ruby/gems/1.8/gems/railties-3.1.3/lib/rails/commands.rb:49:in `tap'
+C:/Ruby187/lib/ruby/gems/1.8/gems/railties-3.1.3/lib/rails/commands.rb:49
+script/rails:6:in `require'
+script/rails:6
+Rendered blogs/_form.html.erb (205.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (210.0ms)
+Completed 500 Internal Server Error in 335ms
+
+ActionView::Template::Error (compile error
+D:/workspace/Blog-Aggregator-with-DB/app/views/blogs/_form.html.erb:25: syntax error, unexpected '=', expecting kEND
+');     :git_url = "https://github.com/" + :git_id 
+                  ^):
+    22:  <div class="field">
+    23:     <%= f.label :git_id %><br />
+    24:     <%= f.text_field :git_id %>
+    25:     <% :git_url = "https://github.com/" + :git_id %>
+    26:  </div>
+    27:   <div class="actions">
+    28:     <%= f.submit %>
+  app/views/blogs/_form.html.erb:34:in `compile'
+  app/views/blogs/new.html.erb:3:in `_app_views_blogs_new_html_erb__349730076_54096996'
+  app/controllers/blogs_controller.rb:30:in `new'
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (89.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 15:30:47 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[35mAdmin Load (0.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+ERROR: compiling _app_views_blogs__form_html_erb__433121570_52023084 RAISED compile error
+D:/workspace/Blog-Aggregator-with-DB/app/views/blogs/_form.html.erb:25: syntax error, unexpected '=', expecting kEND
+');     :git_url = "https://github.com/" 
+                  ^
+Function body:           def _app_views_blogs__form_html_erb__433121570_52023084(local_assigns, output_buffer)
+            _old_virtual_path, @virtual_path = @virtual_path, "blogs/_form";_old_output_buffer = @output_buffer;form = local_assigns[:form];;@output_buffer = output_buffer || ActionView::OutputBuffer.new;@output_buffer.append=  form_for(@blog) do |f| @output_buffer.safe_concat('
+');   if @blog.errors.any? 
+@output_buffer.safe_concat('    <div id="error_explanation">
+      <h2>');@output_buffer.append= ( pluralize(@blog.errors.count, "error") );@output_buffer.safe_concat(' prohibited this blog from being saved:</h2>
+
+      <ul>
+');       @blog.errors.full_messages.each do |msg| 
+@output_buffer.safe_concat('        <li>');@output_buffer.append= ( msg );@output_buffer.safe_concat('</li>
+');       end 
+@output_buffer.safe_concat('      </ul>
+    </div>
+');   end 
+@output_buffer.safe_concat('
+  <div class="field">
+    ');@output_buffer.append= ( f.label :blogger_name );@output_buffer.safe_concat('<br />
+    ');@output_buffer.append= ( f.text_field :blogger_name );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('  </div>
+  <div class="field">
+    ');@output_buffer.append= ( f.label :blog_url );@output_buffer.safe_concat('(Please Mention  http:// or https:// )<br />
+    ');@output_buffer.append= ( f.text_field :blog_url );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('  </div>
+ <div class="field">
+    ');@output_buffer.append= ( f.label :git_id );@output_buffer.safe_concat('<br />
+    ');@output_buffer.append= ( f.text_field :git_id );@output_buffer.safe_concat('
+');     :git_url = "https://github.com/" 
+@output_buffer.safe_concat(' </div>
+  <div class="actions">
+    ');@output_buffer.append= ( f.submit );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('  </div>
+'); end 
+@output_buffer.to_s
+          ensure
+            @virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+Backtrace: D:/workspace/Blog-Aggregator-with-DB/app/views/blogs/_form.html.erb:34:in `compile'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/template.rb:217:in `compile!'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/template.rb:170:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications.rb:55:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/template.rb:169:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/partial_renderer.rb:256:in `render_partial'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/partial_renderer.rb:228:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/abstract_renderer.rb:33:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications.rb:53:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications.rb:53:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/abstract_renderer.rb:33:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/partial_renderer.rb:227:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/abstract_renderer.rb:22:in `wrap_formats'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/partial_renderer.rb:219:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/renderer.rb:41:in `render_partial'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/helpers/rendering_helper.rb:27:in `render'
+D:/workspace/Blog-Aggregator-with-DB/app/views/blogs/new.html.erb:3:in `_app_views_blogs_new_html_erb__349730076_54096996'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/template.rb:171:in `send'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/template.rb:171:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications.rb:55:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/template.rb:169:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/template_renderer.rb:40:in `render_template'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/abstract_renderer.rb:33:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications.rb:53:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications.rb:53:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/abstract_renderer.rb:33:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/template_renderer.rb:39:in `render_template'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/template_renderer.rb:47:in `render_with_layout'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/template_renderer.rb:38:in `render_template'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/template_renderer.rb:12:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/abstract_renderer.rb:22:in `wrap_formats'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/template_renderer.rb:9:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/renderer.rb:36:in `render_template'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_view/renderer/renderer.rb:17:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/abstract_controller/rendering.rb:120:in `_render_template'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/streaming.rb:250:in `_render_template'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/abstract_controller/rendering.rb:114:in `render_to_body'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/renderers.rb:30:in `render_to_body'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/compatibility.rb:43:in `render_to_body'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/abstract_controller/rendering.rb:99:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/rendering.rb:16:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/instrumentation.rb:40:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+C:/Ruby187/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/instrumentation.rb:40:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/instrumentation.rb:78:in `cleanup_view_runtime'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activerecord-3.1.3/lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/instrumentation.rb:39:in `render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/mime_responds.rb:268:in `retrieve_response_from_mimes'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/mime_responds.rb:195:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/mime_responds.rb:195:in `respond_to'
+D:/workspace/Blog-Aggregator-with-DB/app/controllers/blogs_controller.rb:30:in `new'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/abstract_controller/base.rb:167:in `process_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/rendering.rb:10:in `process_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/abstract_controller/callbacks.rb:18:in `process_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/callbacks.rb:425:in `_run__384139393__process_action__943997142__callbacks'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/callbacks.rb:386:in `send'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/callbacks.rb:386:in `_run_process_action_callbacks'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/callbacks.rb:81:in `send'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/abstract_controller/callbacks.rb:17:in `process_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/rescue.rb:17:in `process_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications.rb:53:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/notifications.rb:53:in `instrument'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/params_wrapper.rb:201:in `process_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activerecord-3.1.3/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/abstract_controller/base.rb:121:in `process'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/abstract_controller/rendering.rb:45:in `process'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal.rb:193:in `dispatch'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_controller/metal.rb:236:in `action'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/routing/route_set.rb:65:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/routing/route_set.rb:65:in `dispatch'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/routing/route_set.rb:29:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-mount-0.8.3/lib/rack/mount/route_set.rb:152:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-mount-0.8.3/lib/rack/mount/code_generation.rb:96:in `recognize'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-mount-0.8.3/lib/rack/mount/code_generation.rb:82:in `optimized_each'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-mount-0.8.3/lib/rack/mount/code_generation.rb:95:in `recognize'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-mount-0.8.3/lib/rack/mount/route_set.rb:141:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/routing/route_set.rb:532:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/warden-1.1.0/lib/warden/manager.rb:35:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/warden-1.1.0/lib/warden/manager.rb:34:in `catch'
+C:/Ruby187/lib/ruby/gems/1.8/gems/warden-1.1.0/lib/warden/manager.rb:34:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/etag.rb:23:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/conditionalget.rb:25:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/head.rb:14:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/flash.rb:247:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/session/abstract/id.rb:195:in `context'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/session/abstract/id.rb:190:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/cookies.rb:331:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activerecord-3.1.3/lib/active_record/query_cache.rb:64:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activerecord-3.1.3/lib/active_record/connection_adapters/abstract/connection_pool.rb:477:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/callbacks.rb:29:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/callbacks.rb:392:in `_run_call_callbacks'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/callbacks.rb:81:in `send'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/reloader.rb:68:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/sendfile.rb:101:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/railties-3.1.3/lib/rails/rack/logger.rb:13:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/methodoverride.rb:24:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/runtime.rb:17:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/activesupport-3.1.3/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/lock.rb:15:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/static.rb:53:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/railties-3.1.3/lib/rails/engine.rb:456:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/content_length.rb:14:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/railties-3.1.3/lib/rails/rack/log_tailer.rb:14:in `call'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/handler/webrick.rb:59:in `service'
+C:/Ruby187/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+C:/Ruby187/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+C:/Ruby187/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+C:/Ruby187/lib/ruby/1.8/webrick/server.rb:162:in `start'
+C:/Ruby187/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+C:/Ruby187/lib/ruby/1.8/webrick/server.rb:95:in `start'
+C:/Ruby187/lib/ruby/1.8/webrick/server.rb:92:in `each'
+C:/Ruby187/lib/ruby/1.8/webrick/server.rb:92:in `start'
+C:/Ruby187/lib/ruby/1.8/webrick/server.rb:23:in `start'
+C:/Ruby187/lib/ruby/1.8/webrick/server.rb:82:in `start'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/handler/webrick.rb:13:in `run'
+C:/Ruby187/lib/ruby/gems/1.8/gems/rack-1.3.6/lib/rack/server.rb:265:in `start'
+C:/Ruby187/lib/ruby/gems/1.8/gems/railties-3.1.3/lib/rails/commands/server.rb:70:in `start'
+C:/Ruby187/lib/ruby/gems/1.8/gems/railties-3.1.3/lib/rails/commands.rb:54
+C:/Ruby187/lib/ruby/gems/1.8/gems/railties-3.1.3/lib/rails/commands.rb:49:in `tap'
+C:/Ruby187/lib/ruby/gems/1.8/gems/railties-3.1.3/lib/rails/commands.rb:49
+script/rails:6:in `require'
+script/rails:6
+Rendered blogs/_form.html.erb (136.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (140.0ms)
+Completed 500 Internal Server Error in 244ms
+
+ActionView::Template::Error (compile error
+D:/workspace/Blog-Aggregator-with-DB/app/views/blogs/_form.html.erb:25: syntax error, unexpected '=', expecting kEND
+');     :git_url = "https://github.com/" 
+                  ^):
+    22:  <div class="field">
+    23:     <%= f.label :git_id %><br />
+    24:     <%= f.text_field :git_id %>
+    25:     <% :git_url = "https://github.com/" %>
+    26:  </div>
+    27:   <div class="actions">
+    28:     <%= f.submit %>
+  app/views/blogs/_form.html.erb:34:in `compile'
+  app/views/blogs/new.html.erb:3:in `_app_views_blogs_new_html_erb__349730076_54096996'
+  app/controllers/blogs_controller.rb:30:in `new'
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (16.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 15:31:35 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered blogs/_form.html.erb (18.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (22.0ms)
+Completed 500 Internal Server Error in 149ms
+
+ActionView::Template::Error (undefined method `git_id' for #<Blog:0x691ef78>):
+    21:   </div>
+    22:  <div class="field">
+    23:     <%= f.label :git_id %><br />
+    24:     <%= f.text_field :git_id %>
+    25:     <% @blog.git_url = "https://github.com/" %>
+    26:  </div>
+    27:   <div class="actions">
+  app/views/blogs/_form.html.erb:24:in `_app_views_blogs__form_html_erb__433121570_55050564'
+  app/views/blogs/_form.html.erb:1:in `_app_views_blogs__form_html_erb__433121570_55050564'
+  app/views/blogs/new.html.erb:3:in `_app_views_blogs_new_html_erb__349730076_54096996'
+  app/controllers/blogs_controller.rb:30:in `new'
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (17.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 15:32:14 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[35mAdmin Load (0.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered blogs/_form.html.erb (18.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (37.0ms)
+Completed 500 Internal Server Error in 101ms
+
+ActionView::Template::Error (interning empty string):
+    20:     <%= f.text_field :blog_url %>
+    21:   </div>
+    22:  <div class="field">
+    23:     <%= f.label @git_id %><br />
+    24:     <%= f.text_field @git_id %>
+    25:     <% @blog.git_url = "https://github.com/" %>
+    26:  </div>
+  app/views/blogs/_form.html.erb:23:in `_app_views_blogs__form_html_erb__433121570_52120176'
+  app/views/blogs/_form.html.erb:1:in `_app_views_blogs__form_html_erb__433121570_52120176'
+  app/views/blogs/new.html.erb:3:in `_app_views_blogs_new_html_erb__349730076_54096996'
+  app/controllers/blogs_controller.rb:30:in `new'
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (18.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 15:32:52 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered blogs/_form.html.erb (17.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (22.0ms)
+Completed 500 Internal Server Error in 87ms
+
+ActionView::Template::Error (interning empty string):
+    20:     <%= f.text_field :blog_url %>
+    21:   </div>
+    22:  <div class="field">
+    23:     <%= f.label @git_id %><br />
+    24:     <%= f.text_field @git_id %>
+    25:     <% @blog.git_url = "https://github.com/" %>
+    26:  </div>
+  app/views/blogs/_form.html.erb:23:in `_app_views_blogs__form_html_erb__433121570_52120176'
+  app/views/blogs/_form.html.erb:1:in `_app_views_blogs__form_html_erb__433121570_52120176'
+  app/views/blogs/new.html.erb:3:in `_app_views_blogs_new_html_erb__349730076_54096996'
+  app/controllers/blogs_controller.rb:30:in `new'
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (18.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 15:32:54 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered blogs/_form.html.erb (18.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (24.0ms)
+Completed 500 Internal Server Error in 86ms
+
+ActionView::Template::Error (interning empty string):
+    20:     <%= f.text_field :blog_url %>
+    21:   </div>
+    22:  <div class="field">
+    23:     <%= f.label @git_id %><br />
+    24:     <%= f.text_field @git_id %>
+    25:     <% @blog.git_url = "https://github.com/" %>
+    26:  </div>
+  app/views/blogs/_form.html.erb:23:in `_app_views_blogs__form_html_erb__433121570_52120176'
+  app/views/blogs/_form.html.erb:1:in `_app_views_blogs__form_html_erb__433121570_52120176'
+  app/views/blogs/new.html.erb:3:in `_app_views_blogs_new_html_erb__349730076_54096996'
+  app/controllers/blogs_controller.rb:30:in `new'
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (17.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 15:32:55 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered blogs/_form.html.erb (17.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (21.0ms)
+Completed 500 Internal Server Error in 84ms
+
+ActionView::Template::Error (interning empty string):
+    20:     <%= f.text_field :blog_url %>
+    21:   </div>
+    22:  <div class="field">
+    23:     <%= f.label @git_id %><br />
+    24:     <%= f.text_field @git_id %>
+    25:     <% @blog.git_url = "https://github.com/" %>
+    26:  </div>
+  app/views/blogs/_form.html.erb:23:in `_app_views_blogs__form_html_erb__433121570_52120176'
+  app/views/blogs/_form.html.erb:1:in `_app_views_blogs__form_html_erb__433121570_52120176'
+  app/views/blogs/new.html.erb:3:in `_app_views_blogs_new_html_erb__349730076_54096996'
+  app/controllers/blogs_controller.rb:30:in `new'
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (17.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 15:34:04 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered blogs/_form.html.erb (18.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (22.0ms)
+Completed 500 Internal Server Error in 88ms
+
+ActionView::Template::Error (interning empty string):
+    20:     <%= f.text_field :blog_url %>
+    21:   </div>
+    22:  <div class="field">
+    23:     <%= f.label @git_id %><br />
+    24:     <%= f.text_field @git_id %>
+    25:     <% @blog.git_url = 'https://github.com' + @git_id %>
+    26:  </div>
+  app/views/blogs/_form.html.erb:23:in `_app_views_blogs__form_html_erb__433121570_51928380'
+  app/views/blogs/_form.html.erb:1:in `_app_views_blogs__form_html_erb__433121570_51928380'
+  app/views/blogs/new.html.erb:3:in `_app_views_blogs_new_html_erb__349730076_54096996'
+  app/controllers/blogs_controller.rb:30:in `new'
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (17.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 15:35:36 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered blogs/_form.html.erb (18.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (44.0ms)
+Completed 500 Internal Server Error in 110ms
+
+ActionView::Template::Error (interning empty string):
+    20:     <%= f.text_field :blog_url %>
+    21:   </div>
+    22:  <div class="field">
+    23:     <%= f.label @git_id %><br />
+    24:     <%= f.text_field @git_id %>
+    25:     <% @blog.git_url = @git_id %>
+    26:  </div>
+  app/views/blogs/_form.html.erb:23:in `_app_views_blogs__form_html_erb__433121570_54582264'
+  app/views/blogs/_form.html.erb:1:in `_app_views_blogs__form_html_erb__433121570_54582264'
+  app/views/blogs/new.html.erb:3:in `_app_views_blogs_new_html_erb__349730076_54096996'
+  app/controllers/blogs_controller.rb:30:in `new'
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (18.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 15:35:37 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[35mAdmin Load (0.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered blogs/_form.html.erb (17.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (22.0ms)
+Completed 500 Internal Server Error in 88ms
+
+ActionView::Template::Error (interning empty string):
+    20:     <%= f.text_field :blog_url %>
+    21:   </div>
+    22:  <div class="field">
+    23:     <%= f.label @git_id %><br />
+    24:     <%= f.text_field @git_id %>
+    25:     <% @blog.git_url = @git_id %>
+    26:  </div>
+  app/views/blogs/_form.html.erb:23:in `_app_views_blogs__form_html_erb__433121570_54582264'
+  app/views/blogs/_form.html.erb:1:in `_app_views_blogs__form_html_erb__433121570_54582264'
+  app/views/blogs/new.html.erb:3:in `_app_views_blogs_new_html_erb__349730076_54096996'
+  app/controllers/blogs_controller.rb:30:in `new'
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (17.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 15:35:38 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered blogs/_form.html.erb (17.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (22.0ms)
+Completed 500 Internal Server Error in 88ms
+
+ActionView::Template::Error (interning empty string):
+    20:     <%= f.text_field :blog_url %>
+    21:   </div>
+    22:  <div class="field">
+    23:     <%= f.label @git_id %><br />
+    24:     <%= f.text_field @git_id %>
+    25:     <% @blog.git_url = @git_id %>
+    26:  </div>
+  app/views/blogs/_form.html.erb:23:in `_app_views_blogs__form_html_erb__433121570_54582264'
+  app/views/blogs/_form.html.erb:1:in `_app_views_blogs__form_html_erb__433121570_54582264'
+  app/views/blogs/new.html.erb:3:in `_app_views_blogs_new_html_erb__349730076_54096996'
+  app/controllers/blogs_controller.rb:30:in `new'
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (17.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 15:35:39 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[35mAdmin Load (0.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered blogs/_form.html.erb (16.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (22.0ms)
+Completed 500 Internal Server Error in 83ms
+
+ActionView::Template::Error (interning empty string):
+    20:     <%= f.text_field :blog_url %>
+    21:   </div>
+    22:  <div class="field">
+    23:     <%= f.label @git_id %><br />
+    24:     <%= f.text_field @git_id %>
+    25:     <% @blog.git_url = @git_id %>
+    26:  </div>
+  app/views/blogs/_form.html.erb:23:in `_app_views_blogs__form_html_erb__433121570_54582264'
+  app/views/blogs/_form.html.erb:1:in `_app_views_blogs__form_html_erb__433121570_54582264'
+  app/views/blogs/new.html.erb:3:in `_app_views_blogs_new_html_erb__349730076_54096996'
+  app/controllers/blogs_controller.rb:30:in `new'
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (25.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 15:35:39 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[36mAdmin Load (0.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered blogs/_form.html.erb (17.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (21.0ms)
+Completed 500 Internal Server Error in 84ms
+
+ActionView::Template::Error (interning empty string):
+    20:     <%= f.text_field :blog_url %>
+    21:   </div>
+    22:  <div class="field">
+    23:     <%= f.label @git_id %><br />
+    24:     <%= f.text_field @git_id %>
+    25:     <% @blog.git_url = @git_id %>
+    26:  </div>
+  app/views/blogs/_form.html.erb:23:in `_app_views_blogs__form_html_erb__433121570_54582264'
+  app/views/blogs/_form.html.erb:1:in `_app_views_blogs__form_html_erb__433121570_54582264'
+  app/views/blogs/new.html.erb:3:in `_app_views_blogs_new_html_erb__349730076_54096996'
+  app/controllers/blogs_controller.rb:30:in `new'
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (18.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 15:35:40 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered blogs/_form.html.erb (17.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (23.0ms)
+Completed 500 Internal Server Error in 85ms
+
+ActionView::Template::Error (interning empty string):
+    20:     <%= f.text_field :blog_url %>
+    21:   </div>
+    22:  <div class="field">
+    23:     <%= f.label @git_id %><br />
+    24:     <%= f.text_field @git_id %>
+    25:     <% @blog.git_url = @git_id %>
+    26:  </div>
+  app/views/blogs/_form.html.erb:23:in `_app_views_blogs__form_html_erb__433121570_54582264'
+  app/views/blogs/_form.html.erb:1:in `_app_views_blogs__form_html_erb__433121570_54582264'
+  app/views/blogs/new.html.erb:3:in `_app_views_blogs_new_html_erb__349730076_54096996'
+  app/controllers/blogs_controller.rb:30:in `new'
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (17.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 15:44:54 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered blogs/_form.html.erb (18.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (25.0ms)
+Completed 500 Internal Server Error in 104ms
+
+ActionView::Template::Error (undefined method `git_username' for #<Blog:0x6735a20>):
+    21:   </div>
+    22:  <div class="field">
+    23:     <%= f.label :git_username %><br />
+    24:     <%= f.text_field :git_username %>
+    25:  </div>
+    26:   <div class="actions">
+    27:     <%= f.submit %>
+  app/views/blogs/_form.html.erb:24:in `_app_views_blogs__form_html_erb__433121570_54083964'
+  app/views/blogs/_form.html.erb:1:in `_app_views_blogs__form_html_erb__433121570_54083964'
+  app/views/blogs/new.html.erb:3:in `_app_views_blogs_new_html_erb__349730076_54096996'
+  app/controllers/blogs_controller.rb:30:in `new'
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (72.0ms)
+
+
+Started GET "/blogs/new." for 127.0.0.1 at Thu Feb 23 15:45:40 +0530 2012
+
+ActionController::RoutingError (No route matches [GET] "/blogs/new."):
+  
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 15:45:44 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[35mAdmin Load (0.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered blogs/_form.html.erb (18.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (22.0ms)
+Completed 500 Internal Server Error in 97ms
+
+ActionView::Template::Error (undefined method `git_username' for #<Blog:0x628d148>):
+    21:   </div>
+    22:  <div class="field">
+    23:     <%= f.label :git_username %><br />
+    24:     <%= f.text_field :git_username %>
+    25:  </div>
+    26:   <div class="actions">
+    27:     <%= f.submit %>
+  app/views/blogs/_form.html.erb:24:in `_app_views_blogs__form_html_erb__433121570_54083964'
+  app/views/blogs/_form.html.erb:1:in `_app_views_blogs__form_html_erb__433121570_54083964'
+  app/views/blogs/new.html.erb:3:in `_app_views_blogs_new_html_erb__349730076_54096996'
+  app/controllers/blogs_controller.rb:30:in `new'
+
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+Rendered C:/Ruby187/lib/ruby/gems/1.8/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (76.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 15:48:58 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered blogs/_form.html.erb (13.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (19.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 156ms (Views: 109.0ms | ActiveRecord: 20.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 15:53:13 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered blogs/_form.html.erb (14.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (19.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 127ms (Views: 79.0ms | ActiveRecord: 23.0ms)
+
+
+Started POST "/blogs" for 127.0.0.1 at Thu Feb 23 15:54:51 +0530 2012
+  Processing by BlogsController#create as HTML
+  Parameters: {"commit"=>"Create Blog", "blog"=>{"blogger_name"=>"Debolina D", "git_url"=>"DebolinaD", "blog_url"=>"http://fullstackdeveloper.blogspot.in/"}, "authenticity_token"=>"oTcVNH7rg1Abj9V3MEBPDFJWnAVKLkZFHklr9SAGbv0=", "utf8"=>"✓"}
+  [1m[36mAdmin Load (0.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mSELECT 1 FROM `blogs` WHERE `blogs`.`blog_url` = BINARY 'http://fullstackdeveloper.blogspot.in/' LIMIT 1[0m
+  [1m[35mSQL (22.0ms)[0m  INSERT INTO `blogs` (`blog_title`, `blog_url`, `blogger_name`, `blogger_type`, `created_at`, `git_url`, `updated_at`) VALUES (?, ?, ?, ?, ?, ?, ?)  [["blog_title", nil], ["blog_url", "http://fullstackdeveloper.blogspot.in/"], ["blogger_name", "Debolina D"], ["blogger_type", nil], ["created_at", Thu, 23 Feb 2012 10:24:51 UTC +00:00], ["git_url", "https://github.com/DebolinaD"], ["updated_at", Thu, 23 Feb 2012 10:24:51 UTC +00:00]]
+  [1m[36m (54.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (0.0ms)[0m  BEGIN
+  [1m[36m (1.0ms)[0m  [1mSELECT 1 FROM `blogs` WHERE (`blogs`.`blog_url` = BINARY 'http://fullstackdeveloper.blogspot.in/' AND `blogs`.`id` != 2) LIMIT 1[0m
+  [1m[35m (15.0ms)[0m  UPDATE `blogs` SET `updated_at` = '2012-02-23 10:24:54', `blog_title` = '\nFullStackDeveloper\n' WHERE `blogs`.`id` = 2
+  [1m[36m (40.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (0.0ms)[0m  BEGIN
+  [1m[36mSQL (13.0ms)[0m  [1mINSERT INTO `posts` (`author`, `blog_id`, `content`, `created_at`, `post_date`, `title`, `updated_at`, `url`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["author", "\n\nDebolina D\n\n"], ["blog_id", 2], ["content", "\n<div dir=\"ltr\" style=\"text-align: left;\" trbidi=\"on\">\n One command, that am sure\neveryone has used more than any other thing is Copy-Paste/Cut-Paste.<br><br><div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\n<br>\n</div>\n<a href=\"http://1.bp.blogspot.com/-fPBMjbc65Ag/T0Xlg8DOwbI/AAAAAAAAAC4/iWdbWOmBkQc/s1600/worried1.jpg\" imageanchor=\"1\" style=\"clear: left; float: left; margin-bottom: 1em; margin-right: 1em;\"><img border=\"0\" src=\"http://1.bp.blogspot.com/-fPBMjbc65Ag/T0Xlg8DOwbI/AAAAAAAAAC4/iWdbWOmBkQc/s1600/worried1.jpg\"></a>Imagine how your life would be, if you couldn’t\ncopy a file from<br><div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\none location to other?<br>\nThat means you can’t borrow movies from\nfriends, not even games </div>\n<div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\nand of course no code copying from Google.<br><br>\n Tough Life I must say.</div>\n<div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\n</div>\n<div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\n<br><br>\n    However even though its really\nimportant, the process that<br>\nalmost everyone follows is </div>\n<div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\n<br>\n</div>\n<div class=\"separator\" style=\"clear: both; text-align: center;\">\n<a href=\"http://4.bp.blogspot.com/-HxfhW-EARl0/T0XlDM4tAeI/AAAAAAAAACo/x4C52ciScvM/s1600/Windows.png\" imageanchor=\"1\" style=\"clear: right; float: right; margin-bottom: 1em; margin-left: 1em;\"><img border=\"0\" height=\"110\" src=\"http://4.bp.blogspot.com/-HxfhW-EARl0/T0XlDM4tAeI/AAAAAAAAACo/x4C52ciScvM/s200/Windows.png\" width=\"200\"></a>\n</div>\n<div class=\"MsoNormal\" style=\"margin-bottom: 9.0pt; margin-left: .5in; margin-right: -1.25in; margin-top: 0in;\">\n1<i>.  Open a windows explorer.</i>\n</div>\n<div class=\"MsoNormal\" style=\"margin-bottom: 9.0pt; margin-left: .5in; margin-right: -1.25in; margin-top: 0in;\">\n<i>2.  Traverse to\nthe file location </i>\n</div>\n<div class=\"MsoNormal\" style=\"margin: 0in -1.25in 9pt 0.5in;\">\n<i>3.  Right click\non it or select copy or may be Ctrl+C (to <b>copy</b>)  or select cut or use Ctrl+X (to <b>cut</b>)</i>\n</div>\n<div class=\"MsoNormal\" style=\"margin-bottom: 9.0pt; margin-left: .5in; margin-right: -1.25in; margin-top: 0in;\">\n<i><a href=\"http://4.bp.blogspot.com/-K2sjpJs24g4/T0Xm6K0JaBI/AAAAAAAAADI/fDEy9TB0C5c/s1600/copy-paste.png\" imageanchor=\"1\" style=\"clear: left; float: left; margin-bottom: 1em; margin-right: 1em;\"><img border=\"0\" src=\"http://4.bp.blogspot.com/-K2sjpJs24g4/T0Xm6K0JaBI/AAAAAAAAADI/fDEy9TB0C5c/s1600/copy-paste.png\"></a> </i>\n</div>\n<div class=\"MsoNormal\" style=\"margin: 0in -1.25in 9pt 0.5in;\">\n<i>4. then again go to the destination(where you </i><br><i>want to\npaste) </i>\n</div>\n<div class=\"MsoNormal\" style=\"margin-bottom: 9.0pt; margin-left: .5in; margin-right: -1.25in; margin-top: 0in;\">\n<i>5. right click to select the option paste or use Ctrl+V</i>\n</div>\n<div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\nThe easiest solution for this\nis <b>cp </b>for <b>Copy-Paste</b> and <b>mv </b>for <b>Cut-Paste</b>. </div>\n<div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\nThis sorts the whole thing in a\nsingle line.</div>\n<div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\n<br>\n</div>\n<div class=\"separator\" style=\"clear: both; text-align: center;\">\n<a href=\"http://3.bp.blogspot.com/-B6paqSxZ7uk/T0XlBMWNYjI/AAAAAAAAACY/ocL0lf1Gt-A/s1600/Copy.png\" imageanchor=\"1\" style=\"margin-left: 1em; margin-right: 1em;\"><img border=\"0\" height=\"195\" src=\"http://3.bp.blogspot.com/-B6paqSxZ7uk/T0XlBMWNYjI/AAAAAAAAACY/ocL0lf1Gt-A/s400/Copy.png\" width=\"400\"></a>\n</div>\n<div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\n</div>\n<div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\nIn the screenshot above I use <b>cp\n</b>to <b>copy </b>the file from one location to another.</div>\n<div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\n<br>\n</div>\n<div class=\"separator\" style=\"clear: both; text-align: center;\">\n<a href=\"http://4.bp.blogspot.com/-1N2ZXb0vKa8/T0XlCbdgLbI/AAAAAAAAACg/icFQm2Mn3Yg/s1600/Cut.png\" imageanchor=\"1\" style=\"margin-left: 1em; margin-right: 1em;\"><img border=\"0\" height=\"226\" src=\"http://4.bp.blogspot.com/-1N2ZXb0vKa8/T0XlCbdgLbI/AAAAAAAAACg/icFQm2Mn3Yg/s400/Cut.png\" width=\"400\"></a>\n</div>\n<div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\n</div>\n<div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\nIn the screenshot above I use <b>mv\n</b>to <b>cut-paste</b> the file from one location to another.</div>\n<div class=\"MsoNormal\" style=\"margin-right: -1.25in;\">\n<br>\n</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n</div>\n<div style=\"clear: both;\"></div>"], ["created_at", Thu, 23 Feb 2012 10:24:54 UTC +00:00], ["post_date", Thu, 23 Feb 2012 07:15:00 UTC +00:00], ["title", "\nFaster Copy-Paste/Cut-Paste for Files\n"], ["updated_at", Thu, 23 Feb 2012 10:24:54 UTC +00:00], ["url", "http://fullstackdeveloper.blogspot.in/2012/02/faster-copy-pastecut-paste.html"]]
+  [1m[35m (38.0ms)[0m  COMMIT
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.0ms)[0m  SELECT 1 FROM `blogs` WHERE (`blogs`.`blog_url` = BINARY 'http://fullstackdeveloper.blogspot.in/' AND `blogs`.`id` != 2) LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (0.0ms)[0m  BEGIN
+  [1m[36mSQL (3.0ms)[0m  [1mINSERT INTO `posts` (`author`, `blog_id`, `content`, `created_at`, `post_date`, `title`, `updated_at`, `url`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["author", "\n\nDebolina D\n\n"], ["blog_id", 2], ["content", "\n<div dir=\"ltr\" style=\"text-align: left;\" trbidi=\"on\">\n<div class=\"separator\" style=\"clear: both; text-align: center;\">\n</div>\n<br><div class=\"separator\" style=\"clear: both; text-align: center;\">\n</div>\n<br><div class=\"MsoNormal\">\nImagine a scenario that you need to go back to the directory\nyou had started with, somewhere if the path could be stored and used as and\nwhen required.</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"separator\" style=\"clear: both; text-align: center;\">\n<a href=\"http://1.bp.blogspot.com/-oUZwCVT_oIw/T0OjU7Sl2UI/AAAAAAAAACQ/aUR45LDfEHU/s1600/windows-7-explorer_7.png\" imageanchor=\"1\" style=\"clear: left; float: left; margin-bottom: 1em; margin-right: 1em;\"><img border=\"0\" height=\"129\" src=\"http://1.bp.blogspot.com/-oUZwCVT_oIw/T0OjU7Sl2UI/AAAAAAAAACQ/aUR45LDfEHU/s200/windows-7-explorer_7.png\" width=\"200\"></a>\n</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\nWith a windows GUI one needs to click on the Back button\nagain and again. </div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\nThough simple it is time consuming.</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\nTry the “Powershell” in windows . If you cannot find it use\nthe search option.</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\nUsing ‘pushd’ and ‘popd’ one can easily sort out the above\nmentioned scenario.</div>\n<div class=\"MsoNormal\">\nEven with the Linux terminal the same command works.</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\nLet me demonstrate the same with an example.</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\n</div>\n<div class=\"separator\" style=\"clear: both; text-align: center;\">\n<a href=\"http://3.bp.blogspot.com/-ht332IDgy8M/T0OgtKtVtmI/AAAAAAAAABg/xhvwC1o_bvc/s1600/eg1.jpg\" imageanchor=\"1\" style=\"margin-left: 1em; margin-right: 1em;\"><img border=\"0\" height=\"251\" src=\"http://3.bp.blogspot.com/-ht332IDgy8M/T0OgtKtVtmI/AAAAAAAAABg/xhvwC1o_bvc/s400/eg1.jpg\" width=\"400\"></a>\n</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\n<br><b>Consider the list of commands in the screen above:</b><br><br><b>ls –l</b> lists the no of file available and I use <b>pushd </b>to push\nthe folder ‘<b>debolina</b>’ into it.</div>\n<div class=\"MsoNormal\">\nThen I perform a cat operation. Now if I use <b>popd </b>I can go\nback to my previous working directory.</div>\n<div class=\"MsoNormal\">\nThis actually works like one of the most common data structure- <b>Stack</b>.</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"separator\" style=\"clear: both; text-align: center;\">\n<a href=\"http://1.bp.blogspot.com/-WeLCMJkovUM/T0OiPbvGHWI/AAAAAAAAABo/LyjDnhODie4/s1600/200px-Data_stack_svg.png\" imageanchor=\"1\" style=\"clear: right; float: right; margin-bottom: 1em; margin-left: 1em;\"><img border=\"0\" src=\"http://1.bp.blogspot.com/-WeLCMJkovUM/T0OiPbvGHWI/AAAAAAAAABo/LyjDnhODie4/s1600/200px-Data_stack_svg.png\"></a>\n</div>\n<div class=\"MsoNormal\">\n<br>\nIf I speak about Stack, the first thing that comes to my\nmind is <b>LIFO</b>: <i>Last in First Out.</i>\n</div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\n A stack is actually an abstract data type and a linear data structure\nand is characterized by two basic operations push and pop.</div>\n<div class=\"separator\" style=\"clear: both; text-align: center;\">\n</div>\n<br><div class=\"separator\" style=\"clear: both; text-align: center;\">\n<a href=\"http://1.bp.blogspot.com/-ATnFcpBNKug/T0OisMj2LcI/AAAAAAAAACI/eNXuZVKtOXw/s1600/401207.jpg\" imageanchor=\"1\" style=\"clear: left; float: left; margin-bottom: 1em; margin-right: 1em;\"><img border=\"0\" src=\"http://1.bp.blogspot.com/-ATnFcpBNKug/T0OisMj2LcI/AAAAAAAAACI/eNXuZVKtOXw/s1600/401207.jpg\"></a>\n</div>\n<div class=\"MsoNormal\">\n<br>\nPush symbolizes adding a new element to the existing set or initialing\na new stack if it is empty and pop means retrieving the last element from the\nstack or nothing if the stack is empty. </div>\n<div class=\"MsoNormal\">\n<br>\n</div>\n<div class=\"MsoNormal\">\n<br>\nSomeway it is more like a stack of plates in a canteen, where\neach plate is stored above the other and if one tries to remove it then one\nneeds to pullout the one at the top.<br><br><br>\n</div>\n</div>\n<div style=\"clear: both;\"></div>"], ["created_at", Thu, 23 Feb 2012 10:24:54 UTC +00:00], ["post_date", Tue, 21 Feb 2012 14:01:00 UTC +00:00], ["title", "\nShortcuts:  Moving in and out of directories.\n"], ["updated_at", Thu, 23 Feb 2012 10:24:54 UTC +00:00], ["url", "http://fullstackdeveloper.blogspot.in/2012/02/shortcuts-moving-in-and-out-of.html"]]
+  [1m[35m (45.0ms)[0m  COMMIT
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.0ms)[0m  SELECT 1 FROM `blogs` WHERE (`blogs`.`blog_url` = BINARY 'http://fullstackdeveloper.blogspot.in/' AND `blogs`.`id` != 2) LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (0.0ms)[0m  BEGIN
+  [1m[36mSQL (103.0ms)[0m  [1mINSERT INTO `posts` (`author`, `blog_id`, `content`, `created_at`, `post_date`, `title`, `updated_at`, `url`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["author", "\n\nDebolina D\n\n"], ["blog_id", 2], ["content", "\n<div dir=\"ltr\" style=\"text-align: left;\" trbidi=\"on\">\n<div style=\"font-family: Arial,Helvetica,sans-serif;\">\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\nAm sure the name “Full stack developer” surprises you.</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\nI heard about it may be a day back and was amazed. I mean is\nit not against what we have been convinced throughout our life. Learn one thing,\nspecialize and do the same repetitive things.</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\nI liked the way, <i><span style=\"color: windowtext; text-decoration: none;\">Carlos Bueno</span></i>,\nan engineer at Facebook spoke about FullStack Developers, in his blog <a href=\"http://www.facebook.com/note.php?note_id=461505383919\">The Full Stack,\nPart I</a> . He said,</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<br>\n</div>\n<div class=\"separator\" style=\"clear: both; font-family: Arial,Helvetica,sans-serif; text-align: center;\">\n<a href=\"http://2.bp.blogspot.com/-IlcIPEpDR4o/T0OAWVmDmbI/AAAAAAAAABA/tQI9tMltozc/s1600/Stack_4.jpg\" imageanchor=\"1\" style=\"clear: right; float: right; margin-bottom: 1em; margin-left: 1em;\"><img border=\"0\" height=\"200\" src=\"http://2.bp.blogspot.com/-IlcIPEpDR4o/T0OAWVmDmbI/AAAAAAAAABA/tQI9tMltozc/s200/Stack_4.jpg\" width=\"130\"></a>\n</div>\n<blockquote class=\"tr_bq\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<div class=\"MsoNormal\">\n<span style=\"font-size: small;\"><i>A\n\"<span style=\"color: windowtext; text-decoration: none;\">full-stack\nprogrammer</span>\" is a generalist, someone who can create a\nnon-trivial application by themselves. People who develop broad skills also tend\nto develop a good mental model of how different layers of a system behave. This\nturns out to be especially valuable for performance &amp; optimization\nwork. No one can know everything about everything, but you should be able\nto visualize what happens up and down the stack as an application does its\nthing. An application is shaped by the requirements of its data, and\nperformance is shaped by how quickly hardware can throw data around.</i></span>\n</div>\n</blockquote>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif; text-align: left;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif; text-align: left;\">\n<a href=\"http://1.bp.blogspot.com/-DR8YcyV27Yo/T0OCOlxzoAI/AAAAAAAAABY/hfzaJQL2kS8/s1600/goal-blocks-image-sm1.jpg\" imageanchor=\"1\" style=\"clear: left; float: left; margin-bottom: 1em; margin-right: 1em;\"><img border=\"0\" src=\"http://1.bp.blogspot.com/-DR8YcyV27Yo/T0OCOlxzoAI/AAAAAAAAABY/hfzaJQL2kS8/s1600/goal-blocks-image-sm1.jpg\"></a>Having said that all, I plan to do loads of things.</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<i> Firstly, learning things it requires for a complete web\ndeveloper and use this blog to help me remember the knowledge I gathered.</i>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<i>Secondly, will try innovating new things, which can be used\nnot only for learning but also for real life scenarios</i>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<br>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\n<i><span style=\"background: none repeat scroll 0% 0% black; border: 1pt none black; color: black; font-size: 0pt; padding: 0in;\"> </span></i>\n</div>\n<div class=\"MsoNormal\" style=\"font-family: Arial,Helvetica,sans-serif;\">\nOf course am sure this blog will also help other to learn\nand of course innovate. </div>\n</div>\n<div style=\"clear: both;\"></div>"], ["created_at", Thu, 23 Feb 2012 10:24:54 UTC +00:00], ["post_date", Tue, 21 Feb 2012 11:40:00 UTC +00:00], ["title", "\nThe Begining......\n"], ["updated_at", Thu, 23 Feb 2012 10:24:54 UTC +00:00], ["url", "http://fullstackdeveloper.blogspot.in/2012/02/begining.html"]]
+  [1m[35m (87.0ms)[0m  COMMIT
+Redirected to http://localhost:3000/blogs/2
+Completed 302 Found in 3218ms
+
+
+Started GET "/blogs/2" for 127.0.0.1 at Thu Feb 23 15:54:55 +0530 2012
+  Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", "2"]]
+Rendered blogs/show.html.erb within layouts/blogs (12.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 218ms (Views: 168.0ms | ActiveRecord: 22.0ms)
+
+
+Started GET "/blogs" for 127.0.0.1 at Thu Feb 23 15:54:58 +0530 2012
+  Processing by BlogsController#index as HTML
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+Rendered blogs/index.html.erb within layouts/blogs (10.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 141ms (Views: 72.0ms | ActiveRecord: 37.0ms)
+
+
+Started GET "/read_blogs" for 127.0.0.1 at Thu Feb 23 15:55:01 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` [0m
+Rendered read_blogs/index.html.erb within layouts/application (7.0ms)
+  [1m[35mAdmin Load (4.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered layouts/_navigation_links.html.erb (124.0ms)
+Completed 200 OK in 441ms (Views: 225.0ms | ActiveRecord: 117.0ms)

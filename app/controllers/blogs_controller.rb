@@ -41,7 +41,8 @@ class BlogsController < ApplicationController
   # POST /blogs
   # POST /blogs.json
   def create
-    @blog = Blog.new(params[:blog])  
+    @blog = Blog.new(params[:blog])
+    @blog.git_url = "https://github.com/" + params[:blog][:git_url]
     respond_to do |format|
       if @blog.save     
         urls1 = [ "http://patshaughnessy.net/","http://patshaughnessy.net"]

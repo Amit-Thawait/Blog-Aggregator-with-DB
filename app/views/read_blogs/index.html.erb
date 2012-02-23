@@ -3,7 +3,7 @@
 				      <% if @blogs && !@blogs.nil? %>
 					<% @blogs.each do |blog|%>
 					<li>
-						<a href="<%= blog.blog_url%>" target="_blank"><%= blog.blogger_name%></a>
+                                          <a href="<%= blog.blog_url%>" target="_blank"><%= blog.blogger_name%></a>&nbsp;&nbsp;<a href="<%= blog.git_url%>" target="_blank">(GitHub Link)</a>
 					</li>
 				        <%end%>
                                       <% end %>

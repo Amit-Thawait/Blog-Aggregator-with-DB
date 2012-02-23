@@ -1,4 +1,4 @@
-o: ActiveSupport::Cache::Entry	:@value{"asset_paths["*$root/app/assets/javascripts/rails.js"	body"ç;(function($, undefined) {
+o: ActiveSupport::Cache::Entry	:@value{"asset_paths["bC:/Ruby187/lib/ruby/gems/1.8/gems/jquery-rails-1.0.19/vendor/assets/javascripts/jquery_ujs.js"	body"ç;(function($, undefined) {
 
 /**
  * Unobtrusive scripting adapter for jQuery
@@ -373,5 +373,5 @@
 })( jQuery );
 "content_type"application/javascript"
 class"BundledAsset"
-mtime"2012-02-23T14:43:37+05:30"_version"%1c9609bc58b1e77c196de29021583379"id"%a9a576cc6fd1bc9409cd558761d36c50"dependency_paths[{"hexdigest"%bb8b5b2f69bac3290543c2deb24085c9"
-mtimeu:	Timeé€  P6"	path"*$root/app/assets/javascripts/rails.js"pathname"*$root/app/assets/javascripts/rails.js"logical_path"rails.js:@created_atf1329993507.4071269 ^:@expires_in0:@compressedF
+mtime"2012-02-09T14:18:00+05:30"_version"%1c9609bc58b1e77c196de29021583379"id"%d31ae71a16537613cee032ee83d5e600"dependency_paths[{"hexdigest"%bb8b5b2f69bac3290543c2deb24085c9"
+mtimeu:	Time(€   À"	path"bC:/Ruby187/lib/ruby/gems/1.8/gems/jquery-rails-1.0.19/vendor/assets/javascripts/jquery_ujs.js"pathname"bC:/Ruby187/lib/ruby/gems/1.8/gems/jquery-rails-1.0.19/vendor/assets/javascripts/jquery_ujs.js"logical_path"jquery_ujs.js:@created_atf1329993506.9060769 ý*:@expires_in0:@compressedF
