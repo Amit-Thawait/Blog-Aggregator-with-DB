@@ -66,8 +66,9 @@ class BlogsController < ApplicationController
   # PUT /blogs/1
   # PUT /blogs/1.json
   def update
+    p "=====================#{params[:blog].inspect}"
     @blog = Blog.find(params[:id])
-    @blog.git_url = "https://github.com/" + params[:blog][:git_url]
+    params[:blog][:git_url] = "https://github.com/" + params[:blog][:git_url]
     respond_to do |format|
       if @blog.update_attributes(params[:blog])
         format.html { redirect_to @blog, :notice => 'Blog was successfully updated.' }
