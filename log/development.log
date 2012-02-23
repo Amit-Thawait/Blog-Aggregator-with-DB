@@ -1936,3 +1936,246 @@ Rendered read_blogs/index.html.erb within layouts/application (7.0ms)
   [1m[35mAdmin Load (4.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
 Rendered layouts/_navigation_links.html.erb (124.0ms)
 Completed 200 OK in 441ms (Views: 225.0ms | ActiveRecord: 117.0ms)
+
+
+Started GET "/" for 127.0.0.1 at Thu Feb 23 16:48:25 +0530 2012
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  Processing by BlogsController#index as HTML
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+Rendered blogs/index.html.erb within layouts/blogs (92.0ms)
+Compiled jquery.js  (5ms)  (pid 4396)
+Compiled rails.js  (0ms)  (pid 4396)
+Compiled script.js  (0ms)  (pid 4396)
+Compiled style.css  (2ms)  (pid 4396)
+Rendered layouts/_navigation_links.html.erb (2.0ms)
+Completed 200 OK in 695ms (Views: 689.1ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/read_blogs" for 127.0.0.1 at Thu Feb 23 16:48:42 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` [0m
+Rendered read_blogs/index.html.erb within layouts/application (8.0ms)
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+Rendered layouts/_navigation_links.html.erb (54.0ms)
+Completed 200 OK in 248ms (Views: 113.0ms | ActiveRecord: 41.0ms)
+
+
+Started GET "/blogs/new" for 127.0.0.1 at Thu Feb 23 16:48:52 +0530 2012
+  Processing by BlogsController#new as HTML
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered blogs/_form.html.erb (17.0ms)
+Rendered blogs/new.html.erb within layouts/blogs (22.0ms)
+Rendered layouts/_navigation_links.html.erb (2.0ms)
+Completed 200 OK in 131ms (Views: 75.0ms | ActiveRecord: 23.0ms)
+
+
+Started POST "/blogs" for 127.0.0.1 at Thu Feb 23 16:49:38 +0530 2012
+  Processing by BlogsController#create as HTML
+  Parameters: {"commit"=>"Create Blog", "blog"=>{"blogger_name"=>"Spoorthy S", "git_url"=>"spoorthys", "blog_url"=>"http://spoorthys.blogspot.com"}, "authenticity_token"=>"oTcVNH7rg1Abj9V3MEBPDFJWnAVKLkZFHklr9SAGbv0=", "utf8"=>"✓"}
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.0ms)[0m  SELECT 1 FROM `blogs` WHERE `blogs`.`blog_url` = BINARY 'http://spoorthys.blogspot.com' LIMIT 1
+  [1m[36mSQL (62.0ms)[0m  [1mINSERT INTO `blogs` (`blog_title`, `blog_url`, `blogger_name`, `blogger_type`, `created_at`, `git_url`, `updated_at`) VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["blog_title", nil], ["blog_url", "http://spoorthys.blogspot.com"], ["blogger_name", "Spoorthy S"], ["blogger_type", nil], ["created_at", Thu, 23 Feb 2012 11:19:39 UTC +00:00], ["git_url", "https://github.com/spoorthys"], ["updated_at", Thu, 23 Feb 2012 11:19:39 UTC +00:00]]
+  [1m[35m (24.0ms)[0m  COMMIT
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.0ms)[0m  SELECT 1 FROM `blogs` WHERE (`blogs`.`blog_url` = BINARY 'http://spoorthys.blogspot.com' AND `blogs`.`id` != 3) LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mUPDATE `blogs` SET `updated_at` = '2012-02-23 11:19:41', `blog_title` = '\nTech Press\n' WHERE `blogs`.`id` = 3[0m
+  [1m[35m (82.0ms)[0m  COMMIT
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (86.0ms)[0m  INSERT INTO `posts` (`author`, `blog_id`, `content`, `created_at`, `post_date`, `title`, `updated_at`, `url`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["author", "\n\nSpoorthy\n\n"], ["blog_id", 3], ["content", "\n<div dir=\"ltr\" style=\"text-align: left;\" trbidi=\"on\">\n<strong><em>Working on Github</em></strong><br><br><div>\n</div>\nGithub is a version control system.Most operations in git need only local files and resources to operate, and no information is needed from another computer on your network. If you go home and can’t get your VPN client working properly, you can still work and commit happily until you get a network connection to upload.<br><br><div>\n</div>\n<strong><em>Just let us find out how the files are pushed to git.</em></strong><br><br>\nWhen files are to be pushed to github repository which has already been set up, we will have to first clone the file from the Github.Add the file,write the required message to the file ,commit it to the local machine with comments and finally push the file to github.<br><br>\n Code snippet: $ git clone <a href=\"mailto:git@github.com:ashutoshdikshit/TEAM3.git\">git@github.com:ashutoshdikshit/TEAM3.git</a><br>\n                       $ touch Service<br>\n                       $ vim Service<br>\n                       <br>\n                       $ git add Solution/<br>\n                       $ git commit -m 'Commit Comments'<br>\n                       $ git push<br><br><div>\n</div>\n<em>In real time experience while pushing a file to git as a collaborator,I got few informations out of which I will be sharing one</em>:<br>\nWhen a file which we have cloned has already been modified by another collaborator in github, then we try to push it to github, it says, need to pull the data again.Sometimes pulling the data by using 'git pull' also will have some issues, the files will not get merged and the conflict remains,then we will have to manually merge the conflicts using vim command, and then add the file ,commit and push it to the github.<br><br><strong><em>Lets check a example which will resemble real time web application projects:</em></strong><br><br>\nSay we have a main solution in which we will have to add project files.Let us consider the example in the Repository TEAM3 which has the below hierarchy.<br><br>\nWe can get the directory hierarchy by using 'git tree'<br><br><br><div class=\"separator\" style=\"clear: both; text-align: center;\">\n<br>\n</div>\n<div class=\"separator\" style=\"clear: both; text-align: center;\">\n<a href=\"http://2.bp.blogspot.com/--pfNLLlHYSQ/T0YJmU-JWjI/AAAAAAAAAAU/lwu4TNrEldw/s1600/Tree+struct.png\" imageanchor=\"1\" style=\"margin-left: 1em; margin-right: 1em;\"><img border=\"0\" lda=\"true\" src=\"http://2.bp.blogspot.com/--pfNLLlHYSQ/T0YJmU-JWjI/AAAAAAAAAAU/lwu4TNrEldw/s1600/Tree+struct.png\"></a>\n</div>\n<div class=\"separator\" style=\"clear: both; text-align: left;\">\nIn the above hierarchy we have the 'Solution' directory which will have 'Service.csproj' directory in it.</div>\n<div class=\"separator\" style=\"clear: both; text-align: left;\">\nI have written one file within 'Service.csproj' and named it as 'CacheService.cs'.The file will be having the required information.</div>\n<div class=\"separator\" style=\"clear: both; text-align: left;\">\n<br>\n</div>\n<div class=\"separator\" style=\"clear: both; text-align: left;\">\nPerforming the above task I got a message like 'Your branch is ahead of 'origin/master'  by 2 commits',the reason was I have added new files and had commited it to local machine and then later had pulled data from repository.Again when I tried to add and commit the files from the local machine,I got the message as below, because the master repository is not yet been updated with the new files added to the local machine.</div>\n<div class=\"separator\" style=\"clear: both; text-align: left;\">\n<br>\n</div>\n<div class=\"separator\" style=\"clear: both; text-align: left;\">\n<br>\n</div>\n<div class=\"separator\" style=\"clear: both; text-align: center;\">\n<a href=\"http://1.bp.blogspot.com/-yV2AHzdO53s/T0YLxBtKSzI/AAAAAAAAAAc/NXX-VNXFeSY/s1600/Commit_operation.png\" imageanchor=\"1\" style=\"margin-left: 1em; margin-right: 1em;\"><img border=\"0\" lda=\"true\" src=\"http://1.bp.blogspot.com/-yV2AHzdO53s/T0YLxBtKSzI/AAAAAAAAAAc/NXX-VNXFeSY/s1600/Commit_operation.png\"></a>\n</div>\n<div class=\"separator\" style=\"clear: both; text-align: left;\">\n<br>\n</div>\n<div class=\"separator\" style=\"clear: both; text-align: left;\">\n<strong><em>Few tips I would suggest as a github user:</em></strong>\n</div>\n<ul style=\"text-align: left;\">\n<li>We should only initialise the git ,only the first time when we have to create a new repository.</li>\n<li>use 'git pull'  before changing the files,so that the files in the repository are updated on our local machine.</li>\n<li>use 'tree' command, which will give the exact structure of the files in a directory.</li>\n<li>While cloning, if we reference the 'Git Read-Only' field url as marked below, then during the 'git push' operation we need not provide any authentication.</li>\n<div class=\"separator\" style=\"clear: both; text-align: center;\">\n<a href=\"http://2.bp.blogspot.com/-e71n5tfZvyU/T0YTuYMNtFI/AAAAAAAAAAk/Kgx5IhSGcJQ/s1600/GitHubReadOnly.png\" imageanchor=\"1\" style=\"margin-left: 1em; margin-right: 1em;\"><img border=\"0\" lda=\"true\" src=\"http://2.bp.blogspot.com/-e71n5tfZvyU/T0YTuYMNtFI/AAAAAAAAAAk/Kgx5IhSGcJQ/s1600/GitHubReadOnly.png\"></a>\n</div>\n</ul>\n          Code snippet: $ git clone <a href=\"mailto:git@github.com:ashutoshdikshit/TEAM3.git\">git@github.com:ashutoshdikshit/TEAM3.git</a><br><ul style=\"text-align: left;\">\n<li>use 'git status' to track the status as when required.</li>\n</ul>\n</div>\n<div style=\"clear: both;\"></div>"], ["created_at", Thu, 23 Feb 2012 11:19:41 UTC +00:00], ["post_date", Thu, 23 Feb 2012 10:35:00 UTC +00:00], ["title", "\nGithub !!!\n"], ["updated_at", Thu, 23 Feb 2012 11:19:41 UTC +00:00], ["url", "http://spoorthys.blogspot.in/2012/02/github.html"]]
+  [1m[36m (126.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (0.0ms)[0m  BEGIN
+  [1m[36m (1.0ms)[0m  [1mSELECT 1 FROM `blogs` WHERE (`blogs`.`blog_url` = BINARY 'http://spoorthys.blogspot.com' AND `blogs`.`id` != 3) LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  COMMIT
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (4.0ms)[0m  INSERT INTO `posts` (`author`, `blog_id`, `content`, `created_at`, `post_date`, `title`, `updated_at`, `url`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["author", "\n\nSpoorthy\n\n"], ["blog_id", 3], ["content", "\n<div dir=\"ltr\" style=\"text-align: left;\" trbidi=\"on\">\n<strong><em>I will be sharing my experience in learning command lines for the first time .</em></strong><br><br>\nAs a .net developer its really a great fun to learn command lines, which will give us an idea how the directories and files are managed and manipulated, just in few letters.We obviously feel why the legacy method is to be followed when we have a well built GUI,its the reason mentioned below.<br><br><br><div>\n<strong><em>Factors to use Command lines instead of GUI</em></strong>\n</div>\n<ul style=\"text-align: left;\">\n<li>Unix is the only operating system that can scale from embedded chips, up through desktop machines, through servers and database back ends.</li>\n<li>We understand the concept in depth how the computer works for the application.</li>\n<li>When there is a need to log in to the remote server for manipulations, then command line is a way</li>\n<li>Practically, in a remote server to find out the errors logged in log file, command lines will be more useful.</li>\n</ul>\n<br><strong><em>Unix Command lines can be classified to some extend  as follows:</em></strong><br><ul style=\"text-align: left;\">\n<li>\n<em>Basic Navigation</em> : cd, pwd, ls.</li>\n<li>\n<em>Manipulating Files &amp; Folders</em> : cp, CpMac, ditto, mv, rm, rmdir, mkdir, chmod, chflags, chown, chgrp.</li>\n<li>\n<em>Working with Text Files</em> : more, less, grep, pico, vi.</li>\n<li>\n<em>Pipes and Redirects</em> : &gt;, &gt;&gt;, &lt;, |, tee.</li>\n<li>\n<em>Miscellaneous : </em>man, apropos, find, locate, open. </li>\n<li>\n<em>Administration</em> : ps, top, kill, su, sudo, lsbom, lsof, ifconfig, diskutil.</li>\n<li>\n<em>Single-user mode</em> : fsck, mount, SystemStarter, pico, nicl, bless, exit, reboot, shutdown. </li>\n</ul>\n<div>\n</div>\n</div>\n<div style=\"clear: both;\"></div>"], ["created_at", Thu, 23 Feb 2012 11:19:42 UTC +00:00], ["post_date", Tue, 21 Feb 2012 14:04:00 UTC +00:00], ["title", "\nAbout my experience in learning command lines\n"], ["updated_at", Thu, 23 Feb 2012 11:19:42 UTC +00:00], ["url", "http://spoorthys.blogspot.in/2012/02/about-my-experience-in-learning-command.html"]]
+  [1m[36m (88.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/blogs/3
+Completed 302 Found in 3577ms
+
+
+Started GET "/blogs/3" for 127.0.0.1 at Thu Feb 23 16:49:42 +0530 2012
+  Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mAdmin Load (0.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", "3"]]
+Rendered blogs/show.html.erb within layouts/blogs (7.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 121ms (Views: 68.0ms | ActiveRecord: 23.0ms)
+
+
+Started GET "/read_blogs" for 127.0.0.1 at Thu Feb 23 16:49:43 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+Rendered read_blogs/index.html.erb within layouts/application (8.0ms)
+  [1m[36mAdmin Load (4.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered layouts/_navigation_links.html.erb (51.0ms)
+Completed 200 OK in 234ms (Views: 112.0ms | ActiveRecord: 35.0ms)
+
+
+Started GET "/blogs" for 127.0.0.1 at Thu Feb 23 18:34:58 +0530 2012
+  Processing by BlogsController#index as HTML
+  [1m[35mAdmin Load (60.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mBlog Load (20.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` [0m
+Rendered blogs/index.html.erb within layouts/blogs (136.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 884ms (Views: 589.1ms | ActiveRecord: 135.0ms)
+
+
+Started GET "/blogs/1" for 127.0.0.1 at Thu Feb 23 18:35:07 +0530 2012
+  Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAdmin Load (0.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mBlog Load (5.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", "1"]]
+Rendered blogs/show.html.erb within layouts/blogs (8.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 152ms (Views: 64.0ms | ActiveRecord: 26.0ms)
+
+
+Started GET "/blogs" for 127.0.0.1 at Thu Feb 23 18:35:34 +0530 2012
+  Processing by BlogsController#index as HTML
+  [1m[35mAdmin Load (0.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mBlog Load (0.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` [0m
+Rendered blogs/index.html.erb within layouts/blogs (12.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 180ms (Views: 66.0ms | ActiveRecord: 20.0ms)
+
+
+Started GET "/blogs/1/edit" for 127.0.0.1 at Thu Feb 23 18:35:37 +0530 2012
+  Processing by BlogsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", "1"]]
+Rendered blogs/_form.html.erb (36.0ms)
+Rendered blogs/edit.html.erb within layouts/blogs (74.0ms)
+Rendered layouts/_navigation_links.html.erb (2.0ms)
+Completed 200 OK in 186ms (Views: 133.0ms | ActiveRecord: 22.0ms)
+
+
+Started PUT "/blogs/1" for 127.0.0.1 at Thu Feb 23 18:35:43 +0530 2012
+  Processing by BlogsController#update as HTML
+  Parameters: {"commit"=>"Update Blog", "blog"=>{"blogger_name"=>"Abhishek Bahuguna", "git_url"=>"https://github.com/abhishek-bahuguna", "blog_url"=>"http://abhishekbahuguna.blogspot.in/"}, "authenticity_token"=>"oTcVNH7rg1Abj9V3MEBPDFJWnAVKLkZFHklr9SAGbv0=", "utf8"=>"✓", "id"=>"1"}
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mBlog Load (0.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mSQL (0.0ms)[0m  BEGIN
+  [1m[36m (16.0ms)[0m  [1mSELECT 1 FROM `blogs` WHERE (`blogs`.`blog_url` = BINARY 'http://abhishekbahuguna.blogspot.in/' AND `blogs`.`id` != 1) LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  COMMIT
+Redirected to http://localhost:3000/blogs/1
+Completed 302 Found in 112ms
+
+
+Started GET "/blogs/1" for 127.0.0.1 at Thu Feb 23 18:35:44 +0530 2012
+  Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAdmin Load (0.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", "1"]]
+Rendered blogs/show.html.erb within layouts/blogs (8.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 116ms (Views: 62.0ms | ActiveRecord: 22.0ms)
+
+
+Started GET "/blogs" for 127.0.0.1 at Thu Feb 23 18:35:50 +0530 2012
+  Processing by BlogsController#index as HTML
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+Rendered blogs/index.html.erb within layouts/blogs (11.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 202ms (Views: 66.0ms | ActiveRecord: 21.0ms)
+
+
+Started GET "/blogs" for 127.0.0.1 at Thu Feb 23 18:36:10 +0530 2012
+  Processing by BlogsController#index as HTML
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+Rendered blogs/index.html.erb within layouts/blogs (11.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 121ms (Views: 69.0ms | ActiveRecord: 22.0ms)
+
+
+Started GET "/blogs/1" for 127.0.0.1 at Thu Feb 23 18:36:14 +0530 2012
+  Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", "1"]]
+Rendered blogs/show.html.erb within layouts/blogs (8.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 119ms (Views: 65.0ms | ActiveRecord: 22.0ms)
+
+
+Started GET "/blogs/1" for 127.0.0.1 at Thu Feb 23 18:36:30 +0530 2012
+  Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAdmin Load (0.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", "1"]]
+Rendered blogs/show.html.erb within layouts/blogs (9.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 123ms (Views: 68.0ms | ActiveRecord: 20.0ms)
+
+
+Started GET "/blogs" for 127.0.0.1 at Thu Feb 23 18:36:34 +0530 2012
+  Processing by BlogsController#index as HTML
+  [1m[36mAdmin Load (0.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+Rendered blogs/index.html.erb within layouts/blogs (13.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 123ms (Views: 70.0ms | ActiveRecord: 19.0ms)
+
+
+Started GET "/blogs/1/edit" for 127.0.0.1 at Thu Feb 23 18:36:35 +0530 2012
+  Processing by BlogsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  [1m[35mBlog Load (0.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", "1"]]
+Rendered blogs/_form.html.erb (12.0ms)
+Rendered blogs/edit.html.erb within layouts/blogs (18.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 129ms (Views: 73.0ms | ActiveRecord: 26.0ms)
+
+
+Started PUT "/blogs/1" for 127.0.0.1 at Thu Feb 23 18:36:39 +0530 2012
+  Processing by BlogsController#update as HTML
+  Parameters: {"commit"=>"Update Blog", "blog"=>{"blogger_name"=>"Abhishek Bahuguna", "git_url"=>"https://github.com/abhishek-bahuguna", "blog_url"=>"http://abhishekbahuguna.blogspot.in/"}, "authenticity_token"=>"oTcVNH7rg1Abj9V3MEBPDFJWnAVKLkZFHklr9SAGbv0=", "utf8"=>"✓", "id"=>"1"}
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1  [["id", "1"]]
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  SELECT 1 FROM `blogs` WHERE (`blogs`.`blog_url` = BINARY 'http://abhishekbahuguna.blogspot.in/' AND `blogs`.`id` != 1) LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/blogs/1
+Completed 302 Found in 69ms
+
+
+Started GET "/blogs/1" for 127.0.0.1 at Thu Feb 23 18:36:39 +0530 2012
+  Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAdmin Load (0.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` WHERE `blogs`.`id` = ? LIMIT 1[0m  [["id", "1"]]
+Rendered blogs/show.html.erb within layouts/blogs (8.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 193ms (Views: 75.0ms | ActiveRecord: 18.0ms)
+
+
+Started GET "/blogs" for 127.0.0.1 at Thu Feb 23 18:36:44 +0530 2012
+  Processing by BlogsController#index as HTML
+  [1m[35mAdmin Load (0.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mBlog Load (0.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` [0m
+Rendered blogs/index.html.erb within layouts/blogs (12.0ms)
+Rendered layouts/_navigation_links.html.erb (2.0ms)
+Completed 200 OK in 129ms (Views: 72.0ms | ActiveRecord: 19.0ms)
+
+
+Started GET "/blogs" for 127.0.0.1 at Thu Feb 23 18:37:42 +0530 2012
+  Processing by BlogsController#index as HTML
+  [1m[35mAdmin Load (0.0ms)[0m  SELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1
+  [1m[36mBlog Load (1.0ms)[0m  [1mSELECT `blogs`.* FROM `blogs` [0m
+Rendered blogs/index.html.erb within layouts/blogs (11.0ms)
+Rendered layouts/_navigation_links.html.erb (1.0ms)
+Completed 200 OK in 252ms (Views: 120.0ms | ActiveRecord: 25.0ms)
+
+
+Started GET "/read_blogs" for 127.0.0.1 at Thu Feb 23 18:37:52 +0530 2012
+  Processing by ReadBlogsController#index as HTML
+  [1m[35mBlog Load (1.0ms)[0m  SELECT `blogs`.* FROM `blogs` 
+Rendered read_blogs/index.html.erb within layouts/application (7.0ms)
+  [1m[36mAdmin Load (4.0ms)[0m  [1mSELECT `admins`.* FROM `admins` WHERE `admins`.`id` = 1 LIMIT 1[0m
+Rendered layouts/_navigation_links.html.erb (118.0ms)
+Completed 200 OK in 334ms (Views: 215.0ms | ActiveRecord: 35.0ms)

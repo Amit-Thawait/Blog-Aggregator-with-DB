@@ -4,6 +4,7 @@
   <tr>
     <th>Blogger name</th>
     <th>Blog url</th>
+    <th>Git url</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,6 +14,7 @@
   <tr>
     <td><%= blog.blogger_name %></td>
     <td><%= blog.blog_url %></td>
+    <td><%= blog.git_url %></td>
     <td><%= link_to 'Show', blog_path(blog)%></td>
     <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
     <td><%= link_to 'Destroy', blog, :confirm => 'Are you sure?', :method => :delete %></td>
